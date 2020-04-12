@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public static float speed = 1f;
+    public static float speed = 3f;
 
     public KeyCode upKey = KeyCode.UpArrow;
     public KeyCode downKey = KeyCode.DownArrow;
@@ -18,11 +18,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(upKey))
+        if (Input.GetKey(upKey) && transform.position.y < 4.2)
         {
             transform.Translate(Vector2.up * speed * Time.deltaTime);
         }
-        if (Input.GetKey(downKey))
+        if (Input.GetKey(downKey) && transform.position.y > -4.2)
         {
             transform.Translate(Vector2.down * speed * Time.deltaTime);
         }
