@@ -352,7 +352,7 @@ MonoBehaviour:
   start_delay_sec: 3
   pingClip: {fileID: 8300000, guid: 9ae6e5edd44d9924c94825b57dedcc93, type: 3}
   pongClip: {fileID: 8300000, guid: 2b557b9b550b7d941b9832af59955ef0, type: 3}
-  wallClip: {fileID: 0}
+  wallClip: {fileID: 8300000, guid: c4b274935bdb865468006f01dd078977, type: 3}
 --- !u!82 &334761478
 AudioSource:
   m_ObjectHideFlags: 0
