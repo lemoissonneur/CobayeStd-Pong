@@ -13,6 +13,8 @@ public class Baballe : MonoBehaviour
     public AudioClip pongClip;
     public AudioClip wallClip;
 
+    private bool started = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,11 @@ public class Baballe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!started && Time.time > start_delay_sec)
+        {
+            started = true;
+            // lancement de la balle ici
+        }
         
     }
 
