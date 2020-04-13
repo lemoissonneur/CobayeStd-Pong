@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Baballe : MonoBehaviour
 {
@@ -49,13 +50,8 @@ public class Baballe : MonoBehaviour
                 break;
 
             case "LeftWall":
-                Debug.Log("left");
-                audioSource.PlayOneShot(wallClip, 1f);
-                break;
-
             case "RightWall":
-                Debug.Log("right");
-                audioSource.PlayOneShot(wallClip, 1f);
+                SceneManager.LoadScene("Accueil");
                 break;
         }
     }
