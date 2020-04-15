@@ -93,27 +93,12 @@ public class Baballe : MonoBehaviour
                 break;
 
             case "LeftWall":
-                {
-                    ScoreManager.Instance.GoalPong();
-
-                    // Init ball
-                    transform.position = Vector2.zero;
-                    rb2D.velocity = Vector2.left * initialSpeed;
-                    currentSpeed = initialSpeed;
-                }
-                break;
             case "RightWall":
-                {
-                    ScoreManager.Instance.GoalPing();
-
-                    // Init ball
-                    transform.position = Vector2.zero;
-                    rb2D.velocity = Vector2.right * initialSpeed;
-                    currentSpeed = initialSpeed;
-                }
+                SceneManager.LoadScene("Accueil");
                 break;
         }
     }
+
 
     private float HitFactor(Vector2 ballPos, Vector2 racketPos, float racketHeight)
     {
