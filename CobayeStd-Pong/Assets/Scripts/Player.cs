@@ -28,4 +28,5 @@ public class Player : MonoBehaviour
             transform.Translate(Vector2.down * speed * Time.deltaTime);
         }
     }
+
 }
