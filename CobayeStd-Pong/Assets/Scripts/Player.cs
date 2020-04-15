@@ -43,11 +43,11 @@ public class Player : MonoBehaviour
 
     void deplacementHorizontal()
     {
-        if (Input.GetKey(RightKey) && transform.position.x < horizontalLimitePos)
+        if (Input.GetKey(upKey) && transform.position.x < horizontalLimitePos)
         {
             transform.Translate(Vector2.right * speed * Time.deltaTime);
         }
-        if (Input.GetKey(LeftKey) && transform.position.x > -horizontalLimitePos)
+        if (Input.GetKey(downKey) && transform.position.x > -horizontalLimitePos)
         {
             transform.Translate(Vector2.left * speed * Time.deltaTime);
         }
