@@ -214,6 +214,11 @@ PrefabInstance:
       propertyPath: downLeftKey
       value: 115
       objectReference: {fileID: 0}
+    - target: {fileID: 8967832675790360527, guid: d7b2490b2ae0e534a8032c8f8f4964e7,
+        type: 3}
+      propertyPath: speed
+      value: 6.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7b2490b2ae0e534a8032c8f8f4964e7, type: 3}
 --- !u!1 &334761472
@@ -358,10 +363,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 510d247bbdf78b240904e4cb9a844c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpeed: 3
+  initialSpeed: 7
   start_delay_sec: 1
-  reboundAcceleration: 0.5
-  limitSpeed: 10
+  reboundAcceleration: 0.7
+  limitSpeed: 20
   pingClip: {fileID: 8300000, guid: 9ae6e5edd44d9924c94825b57dedcc93, type: 3}
   pongClip: {fileID: 8300000, guid: 2b557b9b550b7d941b9832af59955ef0, type: 3}
   wallClip: {fileID: 8300000, guid: c4b274935bdb865468006f01dd078977, type: 3}
@@ -1546,6 +1551,11 @@ PrefabInstance:
         type: 3}
       propertyPath: downLeftKey
       value: 274
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967832675790360527, guid: d7b2490b2ae0e534a8032c8f8f4964e7,
+        type: 3}
+      propertyPath: speed
+      value: 6.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7b2490b2ae0e534a8032c8f8f4964e7, type: 3}
