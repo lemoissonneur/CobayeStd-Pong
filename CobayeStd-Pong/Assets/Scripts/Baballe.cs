@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Baballe : MonoBehaviour
 {
-    public float initialSpeed = 1f;
+    public float initialSpeed = 7f;
     public int start_delay_sec = 3;
-    public float reboundAcceleration = 0.5f;
-    public float limitSpeed = 10f;
+    public float reboundAcceleration = 0.7f;
+    public float limitSpeed = 20f;
 
     AudioSource audioSource;
     public AudioClip pingClip;
