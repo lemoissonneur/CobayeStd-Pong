@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public KeyCode downLeftKey = KeyCode.None;
 
     public float LimitePos = 4.2f;
+       
 
     // Start is called before the first frame update
     void Start()

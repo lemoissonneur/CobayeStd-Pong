@@ -18,6 +18,7 @@ public class Baballe : MonoBehaviour
     private bool started = false;
     private float currentSpeed;
     private Rigidbody2D rb2D;
+    private string lastPlayer = "Player 1";
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +54,8 @@ public class Baballe : MonoBehaviour
                     Vector2 dir = new Vector2(1, y).normalized;
                     currentSpeed = (currentSpeed + reboundAcceleration) > limitSpeed ? limitSpeed : (currentSpeed + reboundAcceleration);
                     rb2D.velocity = dir * currentSpeed;
+
+                    lastPlayer = other.gameObject.tag;
                 }
                 break;
 
@@ -65,6 +68,8 @@ public class Baballe : MonoBehaviour
                     Vector2 dir = new Vector2(-1, y).normalized;
                     currentSpeed = (currentSpeed + reboundAcceleration) > limitSpeed ? limitSpeed : (currentSpeed + reboundAcceleration);
                     rb2D.velocity = dir * currentSpeed;
+
+                    lastPlayer = other.gameObject.tag;
                 }
                 break;
 
@@ -91,27 +96,6 @@ public class Baballe : MonoBehaviour
                     rb2D.velocity = newVelocity;
                 }
                 break;
-
-            case "LeftWall":
-                {
-                    ScoreManager.Instance.GoalPong();
-
-                    // Init ball
-                    transform.position = Vector2.zero;
-                    rb2D.velocity = Vector2.left * initialSpeed;
-                    currentSpeed = initialSpeed;
-                }
-                break;
-            case "RightWall":
-                {
-                    ScoreManager.Instance.GoalPing();
-
-                    // Init ball
-                    transform.position = Vector2.zero;
-                    rb2D.velocity = Vector2.right * initialSpeed;
-                    currentSpeed = initialSpeed;
-                }
-                break;
         }
     }
 
@@ -120,4 +104,16 @@ public class Baballe : MonoBehaviour
         return (ballPos.y - racketPos.y) / racketHeight;
     }
 
+    
+    public string LastPlayerTouch()
+    {
+        return lastPlayer;
+    }
+
+    public void ReLaunch(Vector2 direction)
+    {
+        transform.position = Vector2.zero;
+        rb2D.velocity = direction * initialSpeed;
+        currentSpeed = initialSpeed;
+    }
 }
