@@ -383,6 +383,11 @@ PrefabInstance:
       propertyPath: speed
       value: 6.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8967832675790360527, guid: d7b2490b2ae0e534a8032c8f8f4964e7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7b2490b2ae0e534a8032c8f8f4964e7, type: 3}
 --- !u!1 &334761472
@@ -881,14 +886,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 695400954}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ea0c55071261184fa39e43ceb4026e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d29748df5a275b4086ee4db8aee891a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6.5
   LimitePos: 4.2
---- !u!1 &725049144
+  niveau: 0
+--- !u!1 &795492911
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1216,9 +1222,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1232429739}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ea0c55071261184fa39e43ceb4026e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d29748df5a275b4086ee4db8aee891a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6.5
@@ -1300,6 +1306,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1345587968}
   m_CullTransparentMesh: 0
+  niveau: 1
 --- !u!1 &1413144705
 GameObject:
   m_ObjectHideFlags: 0
