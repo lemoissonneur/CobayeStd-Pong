@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Baballe : MonoBehaviour
 {
     public float initialSpeed = 7f;
-    public int start_delay_sec = 3;
+    public int start_delay_sec = 2;
     public float reboundAcceleration = 0.7f;
     public float limitSpeed = 20f;
 
@@ -16,6 +16,7 @@ public class Baballe : MonoBehaviour
     public AudioClip wallClip;
 
     private bool started = false;
+    private float startTime = 0;
     private float currentSpeed;
     private Rigidbody2D rb2D;
     private string lastPlayer = "Player 1";
@@ -25,12 +26,13 @@ public class Baballe : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         rb2D = GetComponent<Rigidbody2D>();
+        startTime = Time.time + start_delay_sec;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!started && Time.time > start_delay_sec)
+        if(!started && Time.time > startTime)
         {
             started = true;
 
@@ -110,10 +112,11 @@ public class Baballe : MonoBehaviour
         return lastPlayer;
     }
 
-    public void ReLaunch(Vector2 direction)
+    public void Init()
     {
+        started = false;
+        startTime = Time.time + start_delay_sec;
         transform.position = Vector2.zero;
-        rb2D.velocity = direction * initialSpeed;
-        currentSpeed = initialSpeed;
+        rb2D.velocity = Vector2.zero;
     }
 }

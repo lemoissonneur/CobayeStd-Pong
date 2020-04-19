@@ -388,6 +388,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8967832675790360527, guid: d7b2490b2ae0e534a8032c8f8f4964e7,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 1593822950}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7b2490b2ae0e534a8032c8f8f4964e7, type: 3}
 --- !u!1 &334761472
@@ -971,6 +976,18 @@ MonoBehaviour:
   speed: 6.5
   LimitePos: 4.2
   niveau: 0
+--- !u!114 &695400957 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8967832675790360527, guid: d7b2490b2ae0e534a8032c8f8f4964e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 8967832676311586831}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695400954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e202cfbae5f2d341bea03e03adea340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &795492911
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,8 +1032,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 334761477}
-  Pong: {fileID: 0}
-  Ping: {fileID: 0}
+  pong: {fileID: 695400957}
+  ping: {fileID: 1232429742}
   nbGoalToVictory: 5
 --- !u!1 &1179460783
 GameObject:
@@ -1182,6 +1199,18 @@ MonoBehaviour:
   speed: 6.5
   LimitePos: 4.2
   niveau: 1
+--- !u!114 &1232429742 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8967832675790360527, guid: d7b2490b2ae0e534a8032c8f8f4964e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 295228019}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232429739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e202cfbae5f2d341bea03e03adea340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1413144705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1432,8 +1461,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 795492914}
-        m_MethodName: ReturnMainMenuBtn
+      - m_Target: {fileID: 1621884707}
+        m_MethodName: MainMenuBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1508,7 +1537,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1964906570}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1566,13 +1595,14 @@ GameObject:
   - component: {fileID: 1621884704}
   - component: {fileID: 1621884706}
   - component: {fileID: 1621884705}
+  - component: {fileID: 1621884707}
   m_Layer: 5
   m_Name: PauseScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1621884704
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1632,6 +1662,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621884703}
   m_CullTransparentMesh: 0
+--- !u!114 &1621884707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621884703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9552239d43f62341b22df8b13888119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winnerText: {fileID: 275041758}
+  scoreText: {fileID: 1179460785}
 --- !u!1 &1950967374
 GameObject:
   m_ObjectHideFlags: 0
@@ -1711,8 +1755,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 795492914}
-        m_MethodName: ReStartGameBtn
+      - m_Target: {fileID: 1621884707}
+        m_MethodName: NewGameBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1847,8 +1891,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1593822949}
   - {fileID: 2026261828}
+  - {fileID: 1593822949}
   - {fileID: 1621884704}
   m_Father: {fileID: 0}
   m_RootOrder: 11
@@ -2030,7 +2074,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1964906570}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2365,5 +2409,11 @@ PrefabInstance:
       propertyPath: speed
       value: 6.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8967832675790360527, guid: d7b2490b2ae0e534a8032c8f8f4964e7,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 2026261829}
+    m_RemovedComponents:
+    - {fileID: 4594569856849438145, guid: d7b2490b2ae0e534a8032c8f8f4964e7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d7b2490b2ae0e534a8032c8f8f4964e7, type: 3}

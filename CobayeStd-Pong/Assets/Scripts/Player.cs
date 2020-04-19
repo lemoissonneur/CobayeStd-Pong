@@ -1,20 +1,37 @@
 ﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 6.5f;
-    public KeyCode upRightKey = KeyCode.None;
-    public KeyCode downLeftKey = KeyCode.None;
+    [SerializeField]
+    private float speed = 6.5f;
+    [SerializeField]
+    private KeyCode upRightKey = KeyCode.None;
+    [SerializeField]
+    private KeyCode downLeftKey = KeyCode.None;
+    [SerializeField]
+    private Text scoreText;
+
 
     public float LimitePos = 4.2f;
-       
+    
+
+    private int score = 0;
+    public int Score
+    {
+        get => score;
+        set => score = value;
+    }
+
+    private Vector2 initPos;
+
 
     // Start is called before the first frame update
     void Start()
     {
-
+        initPos = transform.position;
     }
 
     // Update is called once per frame
@@ -28,6 +45,27 @@ public class Player : MonoBehaviour
         {
             transform.Translate(Vector2.down * speed * Time.deltaTime);
         }
+    }
+
+
+    public void InitPosition()
+    {
+        transform.position = initPos;
+    }
+
+    public void Init()
+    {
+        InitPosition();
+        score = 0;
+        scoreText.text = "0";
+    }
+
+    public void GoalPlayer()
+    {
+        score++;
+        scoreText.text = score.ToString();
+
+        GameManager.Instance.CheckScore(gameObject.name, score);
     }
 
 }

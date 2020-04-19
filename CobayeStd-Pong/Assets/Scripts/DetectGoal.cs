@@ -17,7 +17,7 @@ public class DetectGoal : MonoBehaviour
         if (other.gameObject.name == ball.gameObject.name)
         {
             // Get the play who make this goal
-            ScorePlayerManager scorePlayer = GameObject.FindWithTag( ball.LastPlayerTouch() ).GetComponent<ScorePlayerManager>();
+            Player scorePlayer = GameObject.FindWithTag( ball.LastPlayerTouch() ).GetComponent<Player>();
 
             scorePlayer.GoalPlayer();            
         }

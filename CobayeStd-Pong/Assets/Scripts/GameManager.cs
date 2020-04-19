@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public Baballe ball;
-    public Player Pong;
-    public Player Ping;
+    public Player pong;
+    public Player ping;
     public int nbGoalToVictory = 5;
 
 
@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        PauseScreenManager.Instance.IsActive(false);
     }
 
     // Update is called once per frame
@@ -42,24 +42,32 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void Victory()
+    private void NewBall()
     {
-
+        pong.InitPosition();
+        ping.InitPosition();
+        ball.Init();
     }
 
-    public void Goal()
+    public void CheckScore(string player, int scoreToCheck)
     {
-        ball.ReLaunch(Vector2.right);
+        if (scoreToCheck >= GameManager.Instance.nbGoalToVictory)
+        {
+            PauseScreenManager.Instance.Victory(player, pong.Score, ping.Score);
+        }
+        else
+        {
+            NewBall();
+        }        
+    }
+    
+    public void NewGame()
+    {
+        pong.Init();
+        ping.Init();
+        ball.Init();
     }
 
-    public void ReStartGameBtn()
-    {
-        ball.ReLaunch(Vector2.right);
-    }
-
-    public void ReturnMainMenuBtn()
-    {
-        SceneManager.LoadScene("Accueil");
-    }
+    
 
 }
