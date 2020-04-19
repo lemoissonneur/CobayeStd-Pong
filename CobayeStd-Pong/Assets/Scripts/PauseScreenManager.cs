@@ -27,11 +27,13 @@ public class PauseScreenManager : MonoBehaviour
             return;
         }
         instance = this;
+
+        IsActive(false);
     }
     
     void Start()
     {
-        IsActive(false);
+        
     }
 
     public void Victory(string winner, int scorePong, int scorePing)

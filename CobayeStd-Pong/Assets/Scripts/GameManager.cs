@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         else
         {
             NewBall();
-        }        
+        }
     }
     
     public void NewGame()
