@@ -45,11 +45,11 @@ public class Baballe : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        Debug.Log(other.gameObject.name);
         switch (other.gameObject.name)
         {
             case "Ping":
                 {
-                    Debug.Log("ping");
                     audioSource.PlayOneShot(pingClip, 1f);
 
                     float y = HitFactor(transform.position, other.transform.position, other.collider.bounds.size.y);
@@ -63,7 +63,6 @@ public class Baballe : MonoBehaviour
 
             case "Pong":
                 {
-                    Debug.Log("pong");
                     audioSource.PlayOneShot(pongClip, 1f);
 
                     float y = HitFactor(transform.position, other.transform.position, other.collider.bounds.size.y);
@@ -73,6 +72,10 @@ public class Baballe : MonoBehaviour
 
                     lastPlayer = other.gameObject.tag;
                 }
+                break;
+
+            default:
+                audioSource.PlayOneShot(wallClip, 1f);
                 break;
         }
     }
