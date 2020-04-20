@@ -43,7 +43,7 @@ public class Baballe : MonoBehaviour
         
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         switch (other.gameObject.name)
         {
@@ -52,7 +52,7 @@ public class Baballe : MonoBehaviour
                     Debug.Log("ping");
                     audioSource.PlayOneShot(pingClip, 1f);
 
-                    float y = HitFactor(transform.position, other.transform.position, other.bounds.size.y);
+                    float y = HitFactor(transform.position, other.transform.position, other.collider.bounds.size.y);
                     Vector2 dir = new Vector2(1, y).normalized;
                     currentSpeed = (currentSpeed + reboundAcceleration) > limitSpeed ? limitSpeed : (currentSpeed + reboundAcceleration);
                     rb2D.velocity = dir * currentSpeed;
@@ -66,36 +66,12 @@ public class Baballe : MonoBehaviour
                     Debug.Log("pong");
                     audioSource.PlayOneShot(pongClip, 1f);
 
-                    float y = HitFactor(transform.position, other.transform.position, other.bounds.size.y);
+                    float y = HitFactor(transform.position, other.transform.position, other.collider.bounds.size.y);
                     Vector2 dir = new Vector2(-1, y).normalized;
                     currentSpeed = (currentSpeed + reboundAcceleration) > limitSpeed ? limitSpeed : (currentSpeed + reboundAcceleration);
                     rb2D.velocity = dir * currentSpeed;
 
                     lastPlayer = other.gameObject.tag;
-                }
-                break;
-
-            case "TopWall":
-                {
-                    Debug.Log("top");
-                    audioSource.PlayOneShot(wallClip, 1f);
-
-                    Vector2 inDirection = rb2D.velocity;
-                    Vector2 inNormal = Vector2.down;
-                    Vector2 newVelocity = Vector2.Reflect(inDirection, inNormal);
-                    rb2D.velocity = newVelocity;
-                }
-                break;
-
-            case "BottomWall":
-                {
-                    Debug.Log("bottom");
-                    audioSource.PlayOneShot(wallClip, 1f);
-
-                    Vector2 inDirection = rb2D.velocity;
-                    Vector2 inNormal = Vector2.up;
-                    Vector2 newVelocity = Vector2.Reflect(inDirection, inNormal);
-                    rb2D.velocity = newVelocity;
                 }
                 break;
         }
