@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DetectGoal : MonoBehaviour
+public class GoalDetector : MonoBehaviour
 {
     Baballe ball;
 
 
-    void Start()
+    void Awake()
     {
         ball = GameObject.FindWithTag("Ball").GetComponent<Baballe>();
     }

@@ -17,7 +17,7 @@ public class Baballe : MonoBehaviour
 
     private bool started = false;
     private float startTime = 0;
-    private float currentSpeed;
+                                                public float currentSpeed;
     private Rigidbody2D rb2D;
     private string lastPlayer = "Player 1";
 

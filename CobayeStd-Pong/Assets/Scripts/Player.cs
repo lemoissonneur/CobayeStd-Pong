@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        initPos = transform.position;
+        
     }
 
     // Update is called once per frame
@@ -53,9 +53,9 @@ public class Player : MonoBehaviour
         transform.position = initPos;
     }
 
-    public void Init()
+    public void Init(Vector2 position)
     {
-        InitPosition();
+        transform.position = initPos = position;
         score = 0;
         scoreText.text = "0";
     }

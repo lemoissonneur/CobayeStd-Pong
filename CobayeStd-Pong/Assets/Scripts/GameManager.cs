@@ -10,8 +10,7 @@ public class GameManager : MonoBehaviour
     public Player ping;
     public int nbGoalToVictory = 5;
 
-
-
+    
     private static GameManager instance;
     public static GameManager Instance
     {
@@ -25,30 +24,27 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
-        instance = this;
+        instance = this;        
     }
 
 
-
-    // Start is called before the first frame update
     void Start()
     {
         PauseScreenManager.Instance.IsActive(false);
+        TerrainMaker.Instance.MakeTerrain();
+        NewGame();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
 
-    private void NewBall()
-    {
-        pong.InitPosition();
-        ping.InitPosition();
-        ball.Init();
-    }
 
+
+    /**************************************************************************
+    *                                 PUBLIC
+    /**************************************************************************/
     public void CheckScore(string player, int scoreToCheck)
     {
         if (scoreToCheck >= GameManager.Instance.nbGoalToVictory)
@@ -60,14 +56,31 @@ public class GameManager : MonoBehaviour
             NewBall();
         }
     }
-    
-    public void NewGame()
+
+    private void NewBall()
     {
-        pong.Init();
-        ping.Init();
+        pong.InitPosition();
+        ping.InitPosition();
         ball.Init();
     }
 
-    
+    public void NewGame()
+    {
+        pong.Init( new Vector2(TerrainMaker.topRight.x - 1, 0) );
+        ping.Init( new Vector2(TerrainMaker.bottomLeft.x + 1, 0) );
+        ball.Init();
+    }
+
+
+
+
+    /**************************************************************************
+    *                                 PRIVATE
+    /**************************************************************************/
+    private void MakeTerrain()
+    {
+
+    }
+
 
 }
