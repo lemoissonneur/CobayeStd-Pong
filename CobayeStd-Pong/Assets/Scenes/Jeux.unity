@@ -283,6 +283,26 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8967832675790360496, guid: d7b2490b2ae0e534a8032c8f8f4964e7,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967832675790360496, guid: d7b2490b2ae0e534a8032c8f8f4964e7,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967832675790360496, guid: d7b2490b2ae0e534a8032c8f8f4964e7,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967832675790360496, guid: d7b2490b2ae0e534a8032c8f8f4964e7,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.97
+      objectReference: {fileID: 0}
     - target: {fileID: 8967832675790360497, guid: d7b2490b2ae0e534a8032c8f8f4964e7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -338,6 +358,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8967832675790360498, guid: d7b2490b2ae0e534a8032c8f8f4964e7,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6566f232b6bd6d449a37079c82ebccd1,
+        type: 3}
     - target: {fileID: 8967832675790360499, guid: d7b2490b2ae0e534a8032c8f8f4964e7,
         type: 3}
       propertyPath: m_Name
@@ -453,7 +479,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cdcd6dbe352aeb64d960614ad8fd3e5d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e5a5c4b3cdb1078439680c9e506faf56, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -493,7 +519,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.2
 --- !u!50 &334761476
 Rigidbody2D:
   serializedVersion: 4
@@ -534,6 +560,7 @@ MonoBehaviour:
   pingClip: {fileID: 8300000, guid: 9ae6e5edd44d9924c94825b57dedcc93, type: 3}
   pongClip: {fileID: 8300000, guid: 2b557b9b550b7d941b9832af59955ef0, type: 3}
   wallClip: {fileID: 8300000, guid: c4b274935bdb865468006f01dd078977, type: 3}
+  currentSpeed: 0
 --- !u!82 &334761478
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1898,6 +1925,26 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8967832675790360496, guid: d7b2490b2ae0e534a8032c8f8f4964e7,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967832675790360496, guid: d7b2490b2ae0e534a8032c8f8f4964e7,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967832675790360496, guid: d7b2490b2ae0e534a8032c8f8f4964e7,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967832675790360496, guid: d7b2490b2ae0e534a8032c8f8f4964e7,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.97
+      objectReference: {fileID: 0}
     - target: {fileID: 8967832675790360497, guid: d7b2490b2ae0e534a8032c8f8f4964e7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1958,6 +2005,12 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8967832675790360498, guid: d7b2490b2ae0e534a8032c8f8f4964e7,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1d184081937fa2a49a769c2c556f41c4,
+        type: 3}
     - target: {fileID: 8967832675790360499, guid: d7b2490b2ae0e534a8032c8f8f4964e7,
         type: 3}
       propertyPath: m_Name
