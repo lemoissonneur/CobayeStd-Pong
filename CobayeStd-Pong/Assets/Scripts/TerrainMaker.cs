@@ -87,12 +87,17 @@ public class TerrainMaker : MonoBehaviour
         pA.transform.localScale = new Vector3(TerrainSize.x / 2.56f, TerrainSize.y / 2.56f, 1);     // Image 256px * 256px, ratio 100px / 1 => 2.56 
 
         
-        // Scale Ping and Pong        
+        // Scale Ping and Pong
         ping.transform.localScale = new Vector3(BarreSize.x / 0.37f, BarreSize.y / 1.97f, 1);       // Image 37px * 197px, ratio 100px / 1
         pong.transform.localScale = new Vector3(BarreSize.x / 0.37f, BarreSize.y / 1.97f, 1);       // Image 37px * 197px, ratio 100px / 1
+        if (ping.GetComponent<IAplayer>().isActiveAndEnabled)
+            ping.GetComponent<IAplayer>().Init();
+        if (pong.GetComponent<IAplayer>().isActiveAndEnabled)
+            pong.GetComponent<IAplayer>().Init();
 
-        
-        // Position Ping and Pong   
+
+
+        // Position Ping and Pong
         PingPosition = ping.transform.position = new Vector2(-demiTerrainSize.x + MargeSize, 0);
         PongPosition = pong.transform.position = new Vector2(demiTerrainSize.x - MargeSize, 0);
 
@@ -162,6 +167,8 @@ public class TerrainMaker : MonoBehaviour
         }
 
         float unitPix = usedScreenSizePix.x / (targetAreaSize.x + 2 * targetBarreSize.x + 2 * targetMargeSize.x);
+
+        Debug.Log("ScreenR=" + screenRatio + " / targetR=" + targetRatio + " / 1U=" + unitPix);
 
 
         // Define the AREA SIZE

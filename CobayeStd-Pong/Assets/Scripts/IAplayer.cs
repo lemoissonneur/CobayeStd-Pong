@@ -5,7 +5,7 @@ using UnityEngine;
 public class IAplayer : MonoBehaviour
 {
     public float speed = 6.5f;
-    public float LimitePos = 4.2f;
+    public float limitePos = 4.2f;
     public enum IANiveau {STUPIDE, PETE};
     public IANiveau niveau;
     private GameObject balle;
@@ -17,10 +17,7 @@ public class IAplayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        balle = GameObject.Find("Baballe");
-        ballePosition = balle.GetComponent<Transform>().position;
-        ballePreviousPosition = ballePosition;
-        offset = (this.GetComponent<BoxCollider2D>().size.y / 2) - 0.1f;
+        Init();
     }
 
     // Update is called once per frame
@@ -38,6 +35,17 @@ public class IAplayer : MonoBehaviour
         }
     }
 
+    public void Init()
+    {
+        balle = GameObject.Find("Baballe");
+        ballePosition = balle.GetComponent<Transform>().position;
+        ballePreviousPosition = ballePosition;
+        Debug.Log(name + this.transform.localScale.y);
+        offset = (this.transform.localScale.y * this.GetComponent<BoxCollider2D>().size.y / 2) - 0.1f;
+
+        limitePos = (TerrainMaker.TerrainSize.y / 2) - (TerrainMaker.BarreSize.y / 2);
+    }
+
     private void IApeteUpdate()
     {
         // on récup la position actuelle de la balle
@@ -51,11 +59,11 @@ public class IAplayer : MonoBehaviour
             ballePosition.y -= offset;
         else ballePosition.y += offset;
 
-        if (ballePosition.y > transform.position.y && transform.position.y < LimitePos)
+        if (ballePosition.y > transform.position.y && transform.position.y < limitePos)
         {
             transform.Translate(Vector2.up * speed * Time.deltaTime);
         }
-        if (ballePosition.y < transform.position.y && transform.position.y > -LimitePos)
+        if (ballePosition.y < transform.position.y && transform.position.y > -limitePos)
         {
             transform.Translate(Vector2.down * speed * Time.deltaTime);
         }
@@ -65,11 +73,11 @@ public class IAplayer : MonoBehaviour
     {
         ballePosition = balle.GetComponent<Transform>().position;
 
-        if (ballePosition.y > transform.position.y && transform.position.y < LimitePos)
+        if (ballePosition.y > transform.position.y && transform.position.y < limitePos)
         {
             transform.Translate(Vector2.up * speed * Time.deltaTime);
         }
-        if (ballePosition.y < transform.position.y && transform.position.y > -LimitePos)
+        if (ballePosition.y < transform.position.y && transform.position.y > -limitePos)
         {
             transform.Translate(Vector2.down * speed * Time.deltaTime);
         }
