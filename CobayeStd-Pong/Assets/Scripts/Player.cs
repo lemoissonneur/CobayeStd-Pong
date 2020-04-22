@@ -36,8 +36,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        limitePos = (TerrainMaker.TerrainSize.y / 2) - (TerrainMaker.BarreSize.y / 2);
-
         if (Input.GetKey(upRightKey) && transform.position.y < limitePos)
         {
             transform.Translate(Vector2.up * speed * Time.deltaTime);
@@ -56,6 +54,8 @@ public class Player : MonoBehaviour
 
     public void Init(Vector2 position)
     {
+        limitePos = (TerrainMaker.TerrainSize.y / 2) - (TerrainMaker.BarreSize.y / 2);
+
         transform.position = initPos = position;
         score = 0;
         scoreText.text = "0";
