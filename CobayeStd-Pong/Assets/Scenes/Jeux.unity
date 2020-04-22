@@ -958,6 +958,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playArea: {fileID: 3106100962378643406, guid: 2040a201031bd1643a552cb336a5d4fd,
     type: 3}
+  ball: {fileID: 334761472}
+  ping: {fileID: 1232429739}
+  pong: {fileID: 695400954}
+  targetAreaSize: {x: 50, y: 25}
+  targetBarreSize: {x: 1, y: 5}
+  targetMargeSize: {x: 5, y: 0}
+  targetBalleSize: 1
 --- !u!4 &795492913
 Transform:
   m_ObjectHideFlags: 0
@@ -1406,7 +1413,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 3.02}
   m_SizeDelta: {x: 5000, y: 3000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1621884705

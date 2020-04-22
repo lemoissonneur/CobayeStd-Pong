@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     private Text scoreText;
 
 
-    public float LimitePos = 4.2f;
+    private float limitePos = 4.2f;
     
 
     private int score = 0;
@@ -31,17 +31,18 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(upRightKey) && transform.position.y < LimitePos)
+        limitePos = (TerrainMaker.TerrainSize.y / 2) - (TerrainMaker.BarreSize.y / 2);
+
+        if (Input.GetKey(upRightKey) && transform.position.y < limitePos)
         {
             transform.Translate(Vector2.up * speed * Time.deltaTime);
         }
-        if (Input.GetKey(downLeftKey) && transform.position.y > -LimitePos)
+        if (Input.GetKey(downLeftKey) && transform.position.y > -limitePos)
         {
             transform.Translate(Vector2.down * speed * Time.deltaTime);
         }

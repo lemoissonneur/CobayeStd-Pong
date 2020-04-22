@@ -4,14 +4,33 @@ using UnityEngine;
 
 public class TerrainMaker : MonoBehaviour
 {
-    public static Vector2 bottomLeft;
-    public static Vector2 topRight;
-    public static float terrainHeight;
-    public static float terrainWidth;
+    public static Vector2 PingPosition;
+    public static Vector2 PongPosition;
+
+    public static Vector2 TerrainSize;
+    public static Vector2 BarreSize;
+    public static float MargeSize;
+    public static float BallSize;
 
 
     [SerializeField]
     private GameObject playArea;
+    [SerializeField]
+    private GameObject ball;
+    [SerializeField]
+    private GameObject ping;
+    [SerializeField]
+    private GameObject pong;
+
+    [SerializeField]
+    private Vector2 targetAreaSize = new Vector2(50, 25);
+    [SerializeField]
+    private Vector2 targetBarreSize = new Vector2(1, 5);
+    [SerializeField]
+    private Vector2 targetMargeSize = new Vector2(5, 0);
+    [SerializeField]
+    private int targetBalleSize = 1;
+
 
 
 
@@ -29,44 +48,59 @@ public class TerrainMaker : MonoBehaviour
             return;
         }
         instance = this;
-
-
-        // Convert screen's pixel coordinate into game's coordinate
-        bottomLeft = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
-        topRight = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-
-        // Calcul the width and the height of the terrain 
-        terrainHeight = topRight.y - bottomLeft.y;  Debug.Log("Terrain height : " + terrainHeight);
-        terrainWidth = topRight.x - bottomLeft.x;   Debug.Log("Terrain width : " + terrainWidth);
     }
+
+
+
 
     /**************************************************************************
     *                                 PUBLIC
     /**************************************************************************/
     public void MakeTerrain()
-    {
-        GameObject terrain = new GameObject("Terrain");
+    {        
+        SizeGenerator();
+        Vector2 demiTerrainSize = TerrainSize / 2;
 
-        GameObject top = CreateWall("TopWall", new Vector2(terrainWidth, 2));
-        top.transform.position = new Vector2(0, topRight.y + 1);
+
+        // Create area scene gameObject
+        GameObject terrain = new GameObject("Terrain");        
+
+        GameObject top = CreateWall("TopWall", new Vector2(TerrainSize.x, 1));
+        top.transform.position = new Vector2(0, demiTerrainSize.y + 0.5f);
         top.transform.parent = terrain.transform;
 
-        GameObject bottom = CreateWall("BottomWall", new Vector2(terrainWidth, 2));
-        bottom.transform.position = new Vector2(0, bottomLeft.y - 1);
+        GameObject bottom = CreateWall("BottomWall", new Vector2(TerrainSize.x, 1));
+        bottom.transform.position = new Vector2(0, -demiTerrainSize.y - 0.5f);
         bottom.transform.parent = terrain.transform;
+        
 
-
-        GameObject leftDetector = CreateGoalDetector("LeftDetector", new Vector2(2, terrainHeight));
-        leftDetector.transform.position = new Vector2(bottomLeft.x - 1, 0);
+        GameObject leftDetector = CreateGoalDetector("LeftDetector", new Vector2(1, TerrainSize.y));
+        leftDetector.transform.position = new Vector2(-demiTerrainSize.x - 0.5f, 0);
         leftDetector.transform.parent = terrain.transform;
 
-        GameObject rightDetector = CreateGoalDetector("RightDetector", new Vector2(2, terrainHeight));
-        rightDetector.transform.position = new Vector2(topRight.x + 1, 0);
+        GameObject rightDetector = CreateGoalDetector("RightDetector", new Vector2(1, TerrainSize.y));
+        rightDetector.transform.position = new Vector2(demiTerrainSize.x + 0.5f, 0);
         rightDetector.transform.parent = terrain.transform;
+        
+
+        GameObject pA = Instantiate(playArea, terrain.transform);        
+        pA.transform.localScale = new Vector3(TerrainSize.x / 2.56f, TerrainSize.y / 2.56f, 1);     // Image 256px * 256px, ratio 100px / 1 => 2.56 
+
+        
+        // Scale Ping and Pong        
+        ping.transform.localScale = new Vector3(BarreSize.x / 0.37f, BarreSize.y / 1.97f, 1);       // Image 37px * 197px, ratio 100px / 1
+        pong.transform.localScale = new Vector3(BarreSize.x / 0.37f, BarreSize.y / 1.97f, 1);       // Image 37px * 197px, ratio 100px / 1
+
+        
+        // Position Ping and Pong   
+        PingPosition = ping.transform.position = new Vector2(-demiTerrainSize.x + MargeSize, 0);
+        PongPosition = pong.transform.position = new Vector2(demiTerrainSize.x - MargeSize, 0);
 
 
-        GameObject pA = Instantiate(playArea, terrain.transform);
-        pA.transform.localScale = new Vector3(terrainWidth, terrainHeight, 1);
+        // Scale ball
+        ball.transform.localScale = new Vector3(BallSize * 0.40f, BallSize * 0.40f, 1);             // Image 40px * 40px, ratio 100px / 1
+
+
     }
 
 
@@ -104,6 +138,56 @@ public class TerrainMaker : MonoBehaviour
         detector.AddComponent<GoalDetector>();
 
         return detector;
+    }
+
+    private void SizeGenerator()
+    {
+        Vector2 bottomLeft = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
+        Vector2 screenSizePix = new Vector2(Screen.width, Screen.height);
+        Vector2 usedScreenSizePix = screenSizePix;
+
+        // Define UNIT PIX
+        float screenRatio = screenSizePix.x / screenSizePix.y;
+        float targetRatio = (targetAreaSize.x + 2 * targetBarreSize.x + 2 * targetMargeSize.x) / (targetAreaSize.y + 2 * targetMargeSize.y);
+
+        if (screenRatio > targetRatio)
+        {
+            usedScreenSizePix.y = screenSizePix.y;
+            usedScreenSizePix.x = usedScreenSizePix.y * targetRatio;
+        }
+        else if (screenRatio < targetRatio)
+        {
+            usedScreenSizePix.x = screenSizePix.x;
+            usedScreenSizePix.y = usedScreenSizePix.x / targetRatio;
+        }
+
+        float unitPix = usedScreenSizePix.x / (targetAreaSize.x + 2 * targetBarreSize.x + 2 * targetMargeSize.x);
+
+
+        // Define the AREA SIZE
+        Vector2 areaSizePix = targetAreaSize * unitPix;
+        Vector2 rightArea = Camera.main.ScreenToWorldPoint(new Vector2(areaSizePix.x, 0));
+        Vector2 topArea = Camera.main.ScreenToWorldPoint(new Vector2(0, areaSizePix.y));
+        TerrainSize = new Vector2(rightArea.x - bottomLeft.x, topArea.y - bottomLeft.y);
+
+
+        // Define the BARRE SIZE
+        Vector2 barreSizePix = targetBarreSize * unitPix;
+        Vector2 rightBarre = Camera.main.ScreenToWorldPoint(new Vector2(barreSizePix.x, 0));
+        Vector2 topBarre = Camera.main.ScreenToWorldPoint(new Vector2(0, barreSizePix.y));
+        BarreSize = new Vector2(rightBarre.x - bottomLeft.x, topBarre.y - bottomLeft.y);
+
+
+        // Define the MARGE SIZE
+        float margeSizePix = targetMargeSize.x * unitPix;
+        Vector2 rightMarge = Camera.main.ScreenToWorldPoint(new Vector2(margeSizePix, 0));
+        MargeSize = rightMarge.x - bottomLeft.x;
+
+
+        // Define the BALL SIZE
+        float balleSizePix = targetBalleSize * unitPix;
+        Vector2 rightBall = Camera.main.ScreenToWorldPoint(new Vector2(balleSizePix, 0));
+        BallSize = rightBall.x - bottomLeft.x;
     }
 
 }

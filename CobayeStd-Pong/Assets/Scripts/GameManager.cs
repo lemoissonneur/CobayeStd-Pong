@@ -66,8 +66,8 @@ public class GameManager : MonoBehaviour
 
     public void NewGame()
     {
-        pong.Init( new Vector2(TerrainMaker.topRight.x - 1, 0) );
-        ping.Init( new Vector2(TerrainMaker.bottomLeft.x + 1, 0) );
+        pong.Init(TerrainMaker.PongPosition);
+        ping.Init(TerrainMaker.PingPosition);
         ball.Init();
     }
 
