@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class VitesseBalleUp : PowerUp
 {
+    public float AugmentationVitesse = 0f;
+
     // Start is called before the first frame update
     new void Start()
     {
@@ -18,6 +20,6 @@ public class VitesseBalleUp : PowerUp
 
     public override void Effect()
     {
-
+        GameManager.Instance.ball.currentSpeed += AugmentationVitesse;
     }
 }

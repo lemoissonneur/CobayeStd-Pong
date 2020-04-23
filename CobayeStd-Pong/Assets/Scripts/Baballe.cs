@@ -45,7 +45,7 @@ public class Baballe : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log(other.gameObject.name);
+        //Debug.Log(other.gameObject.name);
         switch (other.gameObject.name)
         {
             case "Ping":
@@ -54,7 +54,7 @@ public class Baballe : MonoBehaviour
 
                     float y = HitFactor(transform.position, other.transform.position, other.collider.bounds.size.y);
                     Vector2 dir = new Vector2(1, y).normalized;
-                    currentSpeed = (currentSpeed + reboundAcceleration) > limitSpeed ? limitSpeed : (currentSpeed + reboundAcceleration);
+                    currentSpeed = currentSpeed < limitSpeed ? (currentSpeed+reboundAcceleration>limitSpeed ? limitSpeed : currentSpeed + reboundAcceleration) : currentSpeed;
                     rb2D.velocity = dir * currentSpeed;
 
                     lastPlayer = other.gameObject.tag;
@@ -67,7 +67,7 @@ public class Baballe : MonoBehaviour
 
                     float y = HitFactor(transform.position, other.transform.position, other.collider.bounds.size.y);
                     Vector2 dir = new Vector2(-1, y).normalized;
-                    currentSpeed = (currentSpeed + reboundAcceleration) > limitSpeed ? limitSpeed : (currentSpeed + reboundAcceleration);
+                    currentSpeed = currentSpeed < limitSpeed ? (currentSpeed + reboundAcceleration > limitSpeed ? limitSpeed : currentSpeed + reboundAcceleration) : currentSpeed;
                     rb2D.velocity = dir * currentSpeed;
 
                     lastPlayer = other.gameObject.tag;

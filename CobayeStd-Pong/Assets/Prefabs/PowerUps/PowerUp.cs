@@ -27,10 +27,9 @@ public abstract class PowerUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("PowerUp triggered by "+ collision.gameObject.tag);
+        Debug.Log("PowerUp "+ this.gameObject.name+" triggered by "+ collision.gameObject.tag);
         if(collision.gameObject.tag == "Ball")
         {
-            Debug.Log("Effect");
             Effect();
             Destroy(this.gameObject);
         }

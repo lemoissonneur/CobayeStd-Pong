@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 6.5f;
+    public float speed = 6.5f;
     [SerializeField]
     private KeyCode upRightKey = KeyCode.None;
     [SerializeField]
     private KeyCode downLeftKey = KeyCode.None;
     [SerializeField]
-    private Text scoreText;
+    private Text scoreText = null;
 
 
     private float limitePos = 4.2f;

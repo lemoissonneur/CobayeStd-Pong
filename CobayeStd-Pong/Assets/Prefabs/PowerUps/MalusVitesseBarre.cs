@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MalusVitesseBarre : PowerUp
 {
+    public float ReductionVitesse = 0f;
+
     // Start is called before the first frame update
     new void Start()
     {
@@ -18,6 +20,9 @@ public class MalusVitesseBarre : PowerUp
 
     public override void Effect()
     {
-
+        if (GameManager.Instance.ball.LastPlayerTouch() == "Player 1")
+            GameManager.Instance.ping.speed -= ReductionVitesse;
+        else if (GameManager.Instance.ball.LastPlayerTouch() == "Player 2")
+            GameManager.Instance.pong.speed -= ReductionVitesse;
     }
 }

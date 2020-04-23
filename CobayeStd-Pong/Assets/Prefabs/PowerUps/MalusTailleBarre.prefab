@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa15f9f392088d648bd8d048c10285e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ReductionTaille: 1
 --- !u!1001 &7533963651164253250
 PrefabInstance:
   m_ObjectHideFlags: 0
