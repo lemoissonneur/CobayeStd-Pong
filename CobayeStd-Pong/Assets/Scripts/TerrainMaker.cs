@@ -14,13 +14,13 @@ public class TerrainMaker : MonoBehaviour
 
 
     [SerializeField]
-    private GameObject playArea;
+    private GameObject playArea = null;
     [SerializeField]
-    private GameObject ball;
+    private GameObject ball = null;
     [SerializeField]
-    private GameObject ping;
+    private GameObject ping = null;
     [SerializeField]
-    private GameObject pong;
+    private GameObject pong = null;
 
     [SerializeField]
     private Vector2 targetAreaSize = new Vector2(50, 25);

@@ -8,9 +8,9 @@ using UnityEngine.UI;
 public class PauseScreenManager : MonoBehaviour
 {
     [SerializeField]
-    private Text winnerText;
+    private Text winnerText = null;
     [SerializeField]
-    private Text scoreText;
+    private Text scoreText = null;
 
 
     private static PauseScreenManager instance;
