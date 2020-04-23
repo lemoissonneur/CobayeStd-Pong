@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    public float speed = 6.5f;
+    public float speed = 650f;
     [SerializeField]
     private KeyCode upRightKey = KeyCode.None;
     [SerializeField]
@@ -14,8 +14,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Text scoreText = null;
 
+    public float limitePos = 4.2f;
 
-    private float limitePos = 4.2f;
+    private Rigidbody2D rb2D;
+    private BoxCollider2D bc2D;
+    private SpriteRenderer spriteRender;
     
 
     private int score = 0;
@@ -31,6 +34,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        bc2D = this.gameObject.GetComponent<BoxCollider2D>();
+        spriteRender = this.gameObject.GetComponent<SpriteRenderer>();
+        bc2D.size = spriteRender.bounds.extents * 2;
     }
 
     // Update is called once per frame

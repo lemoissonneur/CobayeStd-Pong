@@ -14,6 +14,10 @@ public class IAplayer : MonoBehaviour
     private Vector3 balleDirection;
     private float offset;
 
+    private Rigidbody2D rb2D;
+    private BoxCollider2D bc2D;
+    private SpriteRenderer spriteRender;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,11 +41,14 @@ public class IAplayer : MonoBehaviour
 
     public void Init()
     {
+        bc2D = this.gameObject.GetComponent<BoxCollider2D>();
+        spriteRender = this.gameObject.GetComponent<SpriteRenderer>();
+        bc2D.size = spriteRender.bounds.extents * 2;
         balle = GameObject.Find("Baballe");
         ballePosition = balle.GetComponent<Transform>().position;
         ballePreviousPosition = ballePosition;
         Debug.Log(name + this.transform.localScale.y);
-        offset = (this.transform.localScale.y * this.GetComponent<BoxCollider2D>().size.y / 2) - 0.1f;
+        offset = (this.transform.localScale.y * this.GetComponent<BoxCollider2D>().size.y / 2) - 10f;
 
         limitePos = (TerrainMaker.TerrainSize.y / 2) - (TerrainMaker.BarreSize.y / 2);
     }

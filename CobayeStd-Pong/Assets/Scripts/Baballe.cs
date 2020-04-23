@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class Baballe : MonoBehaviour
 {
-    public float initialSpeed = 7f;
+    public float initialSpeed = 700f;
     public int start_delay_sec = 2;
-    public float reboundAcceleration = 0.7f;
-    public float limitSpeed = 20f;
+    public float reboundAcceleration = 70f;
+    public float limitSpeed = 2000f;
+    public float currentSpeed;
 
     AudioSource audioSource;
     public AudioClip pingClip;
@@ -17,8 +18,9 @@ public class Baballe : MonoBehaviour
 
     private bool started = false;
     private float startTime = 0;
-                                                public float currentSpeed;
     private Rigidbody2D rb2D;
+    private CircleCollider2D cc2D;
+    private SpriteRenderer spriteRender;
     private string lastPlayer = "Player 1";
 
     // Start is called before the first frame update
@@ -26,6 +28,9 @@ public class Baballe : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         rb2D = GetComponent<Rigidbody2D>();
+        cc2D = this.gameObject.GetComponent<CircleCollider2D>();
+        spriteRender = this.gameObject.GetComponent<SpriteRenderer>();
+        cc2D.radius = spriteRender.bounds.extents.x;
         startTime = Time.time + start_delay_sec;
     }
 
