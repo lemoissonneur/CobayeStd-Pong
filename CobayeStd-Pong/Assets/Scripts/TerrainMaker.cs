@@ -103,7 +103,7 @@ public class TerrainMaker : MonoBehaviour
 
 
         // Scale ball
-        ball.transform.localScale = new Vector3(BallSize * 0.40f, BallSize * 0.40f, 1);             // Image 40px * 40px, ratio 100px / 1
+        ball.transform.localScale = new Vector3(BallSize/100, BallSize/100, 1);             // Image 40px * 40px, ratio 100px / 1
 
 
     }
@@ -192,9 +192,10 @@ public class TerrainMaker : MonoBehaviour
 
 
         // Define the BALL SIZE
-        float balleSizePix = targetBalleSize * unitPix;
-        Vector2 rightBall = Camera.main.ScreenToWorldPoint(new Vector2(balleSizePix, 0));
-        BallSize = rightBall.x - bottomLeft.x;
+        //float balleSizePix = targetBalleSize * unitPix;
+        //Vector2 rightBall = Camera.main.ScreenToWorldPoint(new Vector2(balleSizePix, 0));
+        //BallSize = rightBall.x - bottomLeft.x;
+        BallSize = targetBalleSize * unitPix;
     }
 
 }
