@@ -519,7 +519,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 20
 --- !u!50 &334761476
 Rigidbody2D:
   serializedVersion: 4
@@ -745,6 +745,7 @@ GameObject:
   - component: {fileID: 548350727}
   - component: {fileID: 548350726}
   - component: {fileID: 548350725}
+  - component: {fileID: 548350728}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -771,7 +772,7 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
+  m_projectionMatrixMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
   m_GateFitMode: 2
@@ -786,7 +787,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 540
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -816,6 +817,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &548350728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548350724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c5e39236ab7ac4b9ac3decd74733d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TexturePixelsPerWorldUnit: 1
+  Zoom: 1
 --- !u!1 &681130433
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,8 +978,8 @@ MonoBehaviour:
   pong: {fileID: 695400954}
   targetAreaSize: {x: 50, y: 25}
   targetBarreSize: {x: 1, y: 5}
-  targetMargeSize: {x: 5, y: 0}
-  targetBalleSize: 1
+  targetMargeSize: {x: 4, y: 0}
+  targetBalleSize: {x: 1, y: 1}
 --- !u!4 &795492913
 Transform:
   m_ObjectHideFlags: 0
@@ -1495,8 +1510,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generationFrequencySec: 0.5
-  minAreaBoundaries: {x: -5, y: -3}
-  maxAreaBoundaries: {x: 5, y: 3}
+  minAreaBoundaries: {x: -800, y: 400}
+  maxAreaBoundaries: {x: 800, y: -400}
   powerUps:
   - {fileID: 3252912477576554529, guid: 5f141ab4c7bd31f419a3cdd535d7b2fd, type: 3}
   - {fileID: 7150403771525958359, guid: e39e38bc89d059d46a0ca5f682a50fbb, type: 3}
