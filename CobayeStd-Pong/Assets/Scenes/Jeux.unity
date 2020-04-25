@@ -1014,6 +1014,7 @@ MonoBehaviour:
   ball: {fileID: 334761477}
   pong: {fileID: 695400957}
   ping: {fileID: 1232429742}
+  PUGenerator: {fileID: 1797224793}
   nbGoalToVictory: 5
 --- !u!1 &1179460783
 GameObject:
@@ -1514,7 +1515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f371e946ae7d21a4f982593432037a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generationFrequencySec: 0.5
+  generationDelaySec: 5
   minAreaBoundaries: {x: -800, y: 400}
   maxAreaBoundaries: {x: 800, y: -400}
   powerUps:

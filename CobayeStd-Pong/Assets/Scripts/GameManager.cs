@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public Baballe ball;
     public Player pong;
     public Player ping;
+    public PowerUpGenerator PUGenerator;
     public int nbGoalToVictory = 5;
 
     
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
         pong.InitPosition();
         ping.InitPosition();
         ball.Init();
+        PUGenerator.StartGenerator();
     }
 
     public void NewGame()
@@ -69,6 +71,7 @@ public class GameManager : MonoBehaviour
         pong.Init(TerrainMaker.PongPosition);
         ping.Init(TerrainMaker.PingPosition);
         ball.Init();
+        PUGenerator.StartGenerator();
     }
 
 

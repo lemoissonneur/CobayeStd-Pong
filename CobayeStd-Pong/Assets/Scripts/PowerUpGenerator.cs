@@ -10,10 +10,10 @@ public class PowerUpGenerator : MonoBehaviour
     public Vector2 maxAreaBoundaries;
 
     private bool IsActive = false;
-    private float lastTime = 0f;                // last time we generated a powerup
-    private int powerUpCpt = 0;                 // total number of powerup generated
-    public List<GameObject> powerUps;           // list of available powerups
-    private List<GameObject> currentPowerUps;   // list of currently active powerups
+    private float lastTime = 0f;                                        // last time we generated a powerup
+    private int powerUpCpt = 0;                                         // total number of powerup generated
+    public List<GameObject> powerUps;                                   // list of available powerups
+    private List<GameObject> currentPowerUps = new List<GameObject>();  // list of currently active powerups
     
 
     // Start is called before the first frame update
@@ -70,6 +70,7 @@ public class PowerUpGenerator : MonoBehaviour
 
     public void StartGenerator()
     {
+        StopGenerator();
         lastTime = Time.time;
         currentPowerUps = new List<GameObject>();
         IsActive = true;
@@ -78,8 +79,13 @@ public class PowerUpGenerator : MonoBehaviour
     public void StopGenerator()
     {
         IsActive = false;
+        Debug.Log(currentPowerUps);
         while (currentPowerUps.Count > 0)
-            Destroy(currentPowerUps[0]);
+        {
+            GameObject trash = currentPowerUps[0];
+            currentPowerUps.RemoveAt(0);
+            Destroy(trash);
+        }
     }
 
 }

@@ -47,7 +47,6 @@ public class IAplayer : MonoBehaviour
         balle = GameObject.Find("Baballe");
         ballePosition = balle.GetComponent<Transform>().position;
         ballePreviousPosition = ballePosition;
-        Debug.Log(name + this.transform.localScale.y);
         offset = (this.transform.localScale.y * this.GetComponent<BoxCollider2D>().size.y / 2) - 10f;
 
         limitePos = (TerrainMaker.TerrainSize.y / 2) - (TerrainMaker.BarreSize.y / 2);
