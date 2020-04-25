@@ -27,7 +27,8 @@ public class IAplayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch(niveau)
+        offset = spriteRender.bounds.extents.y - 10f;
+        switch (niveau)
         {
             case IANiveau.STUPIDE:
                 IAstupideUpdate();
@@ -48,7 +49,9 @@ public class IAplayer : MonoBehaviour
         balle = GameObject.Find("Baballe");
         ballePosition = balle.GetComponent<Transform>().position;
         ballePreviousPosition = ballePosition;
-        offset = (this.transform.localScale.y * this.GetComponent<BoxCollider2D>().size.y / 2) - 10f;
+        // offset = (this.transform.localScale.y * this.GetComponent<BoxCollider2D>().size.y / 2) - 10f;
+        offset = spriteRender.bounds.extents.y - 10f;
+
 
         player.processLimitePos();
     }

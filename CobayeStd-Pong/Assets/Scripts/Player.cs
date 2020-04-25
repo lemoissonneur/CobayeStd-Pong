@@ -77,7 +77,8 @@ public class Player : MonoBehaviour
 
     public void processLimitePos()
     {
-        limitePos = (TerrainMaker.TerrainSize.y / 2) - (transform.localScale.y * TerrainMaker.BarreSize.y / 2);
+        limitePos = (TerrainMaker.TerrainSize.y / 2) - (spriteRender.bounds.extents.y);
+        //Debug.Log("t="+TerrainMaker.TerrainSize.y +" s="+ transform.localScale.y +" b="+ spriteRender.bounds.extents.y +" l="+limitePos);
     }
 
 }

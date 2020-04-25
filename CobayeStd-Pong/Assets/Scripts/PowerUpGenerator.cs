@@ -42,7 +42,7 @@ public class PowerUpGenerator : MonoBehaviour
         // roll a dice to select the power in the list
         int selectedpower = generatePowerUpNumber();
 
-        Debug.Log("PowerUpGenerator.generate() "+ selectedpower + "@ "+powerUpPosition);
+        //Debug.Log("PowerUpGenerator.generate() "+ selectedpower + "@ "+powerUpPosition);
 
         // generate power up from prefab (TODO)
         newPowerUp = Instantiate(powerUps[selectedpower], this.transform);
