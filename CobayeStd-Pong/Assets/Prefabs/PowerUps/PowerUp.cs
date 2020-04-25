@@ -11,7 +11,7 @@ public abstract class PowerUp : MonoBehaviour
     //public abstract float probability { get; }
     public float lifetimeSec = 5f;
     public float durationSec = 5f;
-    public Vector2 Size = new Vector2(0.5f, 0.5f);
+    public Vector2 SizeDU = new Vector2(0.5f, 0.5f);
     public bool triggered = false;
     private Coroutine LifeCycleCoroutine;
     private Coroutine EffectDurationCoroutine;
@@ -23,9 +23,8 @@ public abstract class PowerUp : MonoBehaviour
 
         // setup size
         Vector3 spriteSize = this.gameObject.GetComponent<SpriteRenderer>().bounds.extents * 2;
-        Size = Size * TerrainMaker.unitPix;
-        this.gameObject.transform.localScale = Size / spriteSize;
-
+        SizeDU *= TerrainMaker.PixelsPerDU;
+        this.gameObject.transform.localScale = SizeDU / spriteSize;
     }
 
     // Update is called once per frame
@@ -39,7 +38,6 @@ public abstract class PowerUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("PowerUp "+ this.gameObject.name+" triggered by "+ collision.gameObject.tag);
         if(collision.gameObject.tag == "Ball")
         {
             // switch coroutine
@@ -53,6 +51,7 @@ public abstract class PowerUp : MonoBehaviour
             this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
             this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         }
+        else Debug.Log("PowerUp '" + this.gameObject.name + "' triggered by " + collision.gameObject.name);
     }
 
     private IEnumerator LifeCycle()

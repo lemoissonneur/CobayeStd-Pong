@@ -24,11 +24,11 @@ public class MalusVitesseBarre : PowerUp
         else if (GameManager.Instance.ball.LastPlayerTouch() == "Player 2")
             target = GameManager.Instance.pong;
 
-            target.speed /= ReductionVitesse;
+            target.Speed /= ReductionVitesse;
     }
 
     public override void RevertEffect()
     {
-        target.speed *= ReductionVitesse;
+        target.Speed *= ReductionVitesse;
     }
 }

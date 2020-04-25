@@ -5,8 +5,14 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    // unity UI available fields
     [SerializeField]
-    public float speed = 650f;
+    private float speed = 650f;
+    public float Speed
+    {
+        get => speed;
+        set => speed = value;
+    }
     [SerializeField]
     private KeyCode upRightKey = KeyCode.None;
     [SerializeField]
@@ -14,12 +20,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Text scoreText = null;
 
-    public float limitePos;
-
-    private Rigidbody2D rb2D;
-    private BoxCollider2D bc2D;
-    private SpriteRenderer spriteRender;
-    
+    private float limitePos;
+    public float LimitePos
+    {
+        get => limitePos;
+    }
 
     private int score = 0;
     public int Score
@@ -28,30 +33,33 @@ public class Player : MonoBehaviour
         set => score = value;
     }
 
+    private Rigidbody2D rb2D;
+    private BoxCollider2D bc2D;
+    private SpriteRenderer spriteRender;
     private Vector2 initPos;
 
-
-    // Start is called before the first frame update
     void Awake()
     {
+        rb2D = this.gameObject.GetComponent<Rigidbody2D>();
         bc2D = this.gameObject.GetComponent<BoxCollider2D>();
         spriteRender = this.gameObject.GetComponent<SpriteRenderer>();
+
         bc2D.size = spriteRender.bounds.extents * 2;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(upRightKey) && transform.position.y < limitePos)
+        if (Input.GetKey(upRightKey))
         {
             transform.Translate(Vector2.up * speed * Time.deltaTime);
         }
-        if (Input.GetKey(downLeftKey) && transform.position.y > -limitePos)
+        if (Input.GetKey(downLeftKey))
         {
             transform.Translate(Vector2.down * speed * Time.deltaTime);
         }
-    }
 
+        LimitePosition();
+    }
 
     public void InitPosition()
     {
@@ -77,8 +85,16 @@ public class Player : MonoBehaviour
 
     public void processLimitePos()
     {
-        limitePos = (TerrainMaker.TerrainSize.y / 2) - (spriteRender.bounds.extents.y);
-        //Debug.Log("t="+TerrainMaker.TerrainSize.y +" s="+ transform.localScale.y +" b="+ spriteRender.bounds.extents.y +" l="+limitePos);
+        limitePos = (TerrainMaker.TargetAreaSizePix.y / 2) - (spriteRender.bounds.extents.y);
+        Debug.Log("t="+TerrainMaker.TargetAreaSizePix.y +" s="+ transform.localScale.y +" b="+ spriteRender.bounds.extents.y +" l="+limitePos);
+    }
+
+    public void LimitePosition()
+    {
+        if (transform.position.y > limitePos)
+            transform.position = new Vector3(transform.position.x, limitePos, transform.position.z);
+        if (transform.position.y < -limitePos)
+            transform.position = new Vector3(transform.position.x, -limitePos, transform.position.z);
     }
 
 }

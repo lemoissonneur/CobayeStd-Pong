@@ -932,7 +932,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 650
-  limitePos: 0
   niveau: 0
 --- !u!114 &695400957 stripped
 MonoBehaviour:
@@ -981,10 +980,10 @@ MonoBehaviour:
   ball: {fileID: 334761472}
   ping: {fileID: 1232429739}
   pong: {fileID: 695400954}
-  targetAreaSize: {x: 50, y: 25}
-  targetBarreSize: {x: 1, y: 5}
-  targetMargeSize: {x: 4, y: 0}
-  targetBalleSize: {x: 1, y: 1}
+  targetAreaSizeDU: {x: 50, y: 25}
+  targetBarreSizeDU: {x: 1, y: 5}
+  targetMargeSizeDU: {x: 4, y: 0}
+  targetBalleSizeDU: {x: 1, y: 1}
 --- !u!4 &795492913
 Transform:
   m_ObjectHideFlags: 0
@@ -1178,7 +1177,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 650
-  limitePos: 0
   niveau: 1
 --- !u!114 &1232429742 stripped
 MonoBehaviour:
@@ -1516,8 +1514,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generationDelaySec: 5
-  minAreaBoundaries: {x: -800, y: 400}
-  maxAreaBoundaries: {x: 800, y: -400}
+  minAreaBoundariesDU: {x: -25, y: -12}
+  maxAreaBoundariesDU: {x: 25, y: 12}
   powerUps:
   - {fileID: 3252912477576554529, guid: 5f141ab4c7bd31f419a3cdd535d7b2fd, type: 3}
   - {fileID: 7150403771525958359, guid: e39e38bc89d059d46a0ca5f682a50fbb, type: 3}

@@ -6,20 +6,21 @@ public class PowerUpGenerator : MonoBehaviour
 {
     // generator setup
     public float generationDelaySec = 5f;
-    public Vector2 minAreaBoundaries;
-    public Vector2 maxAreaBoundaries;
+    public Vector2Int minAreaBoundariesDU;
+    public Vector2Int maxAreaBoundariesDU;
+    public List<GameObject> powerUps;   // list of available powerups
 
     private bool IsActive = false;
-    private float lastTime = 0f;                                        // last time we generated a powerup
-    private int powerUpCpt = 0;                                         // total number of powerup generated
-    public List<GameObject> powerUps;                                   // list of available powerups
-    private List<GameObject> currentPowerUps = new List<GameObject>();  // list of currently active powerups
-    
+    private float lastTime = 0f;        // last time we generated a powerup
+    private Vector2 minAreaBoundaries;
+    private Vector2 maxAreaBoundaries;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        StartGenerator();
+
     }
 
     // Update is called once per frame
@@ -48,10 +49,6 @@ public class PowerUpGenerator : MonoBehaviour
         newPowerUp = Instantiate(powerUps[selectedpower], this.transform);
         newPowerUp.transform.position = powerUpPosition;
 
-        // add it to the current list
-        currentPowerUps.Add(newPowerUp);
-        powerUpCpt++;
-
         return newPowerUp;
     }
 
@@ -70,24 +67,38 @@ public class PowerUpGenerator : MonoBehaviour
 
     public void StartGenerator()
     {
-        StopGenerator();
+        KillAllChildrens();
+        TranslateAreaBoundaries();
         lastTime = Time.time;
-        currentPowerUps = new List<GameObject>();
         IsActive = true;
     }
 
     public void StopGenerator()
     {
+        KillAllChildrens();
         IsActive = false;
-        while (currentPowerUps.Count > 0)
+    }
+
+    private void KillAllChildrens()
+    {
+        foreach (Transform child in this.transform)
         {
-            GameObject trash = currentPowerUps[0];
+            GameObject trash = child.gameObject;
             PowerUp trashPowerUp = trash.GetComponent<PowerUp>();
+
+            // if triggered, reverse it's effect
             if (trashPowerUp.triggered)
                 trashPowerUp.RevertEffect();
-            currentPowerUps.RemoveAt(0);
+
+            // kill it
             Destroy(trash);
         }
+    }
+
+    private void TranslateAreaBoundaries()
+    {
+        minAreaBoundaries = minAreaBoundariesDU * TerrainMaker.PixelsPerDU;
+        maxAreaBoundaries = maxAreaBoundariesDU * TerrainMaker.PixelsPerDU;
     }
 
 }

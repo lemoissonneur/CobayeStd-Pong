@@ -24,11 +24,11 @@ public class BonusVitesseBarre : PowerUp
         else if (GameManager.Instance.ball.LastPlayerTouch() == "Player 2")
             target = GameManager.Instance.ping;
 
-        target.speed *= AugmentationVitesse;
+        target.Speed *= AugmentationVitesse;
     }
 
     public override void RevertEffect()
     {
-        target.speed /= AugmentationVitesse;
+        target.Speed /= AugmentationVitesse;
     }
 }

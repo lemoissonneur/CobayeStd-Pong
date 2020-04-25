@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
     {
         if (scoreToCheck >= GameManager.Instance.nbGoalToVictory)
         {
+            PUGenerator.StopGenerator();
             PauseScreenManager.Instance.Victory(player, pong.Score, ping.Score);
         }
         else
