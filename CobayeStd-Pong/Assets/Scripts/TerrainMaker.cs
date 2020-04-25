@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class TerrainMaker : MonoBehaviour
 {
-    public static Vector2 PingPosition;
-    public static Vector2 PongPosition;
-
     [SerializeField]
     private GameObject playArea = null;
     [SerializeField]
@@ -25,6 +22,11 @@ public class TerrainMaker : MonoBehaviour
     private Vector2 targetMargeSize = new Vector2(5, 0);
     [SerializeField]
     private Vector2 targetBalleSize = new Vector2(1, 1);
+
+
+
+    public static Vector2 PingPosition;
+    public static Vector2 PongPosition;
 
     public static Vector2 usedScreenSize;
     public static Vector2 TerrainSize;
