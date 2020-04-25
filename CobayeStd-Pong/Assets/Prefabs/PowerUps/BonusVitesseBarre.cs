@@ -5,24 +5,30 @@ using UnityEngine;
 public class BonusVitesseBarre : PowerUp
 {
     public float AugmentationVitesse = 0f;
+    private Player target;
 
-    // Start is called before the first frame update
     new void Start()
     {
-        
+        base.Start();
     }
 
-    // Update is called once per frame
-    void Update()
+    new void Update()
     {
-        
+        base.Update();
     }
 
-    public override void Effect()
+    public override void ApplyEffect()
     {
         if (GameManager.Instance.ball.LastPlayerTouch() == "Player 1")
-            GameManager.Instance.pong.speed += AugmentationVitesse;
+            target = GameManager.Instance.pong;
         else if (GameManager.Instance.ball.LastPlayerTouch() == "Player 2")
-            GameManager.Instance.ping.speed += AugmentationVitesse;
+            target = GameManager.Instance.ping;
+
+        target.speed *= AugmentationVitesse;
+    }
+
+    public override void RevertEffect()
+    {
+        target.speed /= AugmentationVitesse;
     }
 }

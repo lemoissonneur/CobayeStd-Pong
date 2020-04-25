@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 813fe2a9f872e0640bdcd1e98e49cdce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ReductionVitesse: 1
+  lifetimeSec: 5
+  durationSec: 5
+  ReductionVitesse: 2
 --- !u!1001 &3067779475268992282
 PrefabInstance:
   m_ObjectHideFlags: 0

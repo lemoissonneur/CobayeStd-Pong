@@ -5,11 +5,11 @@ using UnityEngine;
 public class PowerUpGenerator : MonoBehaviour
 {
     // generator setup
-    public float generationFrequencySec = 1f;
+    public float generationDelaySec = 5f;
     public Vector2 minAreaBoundaries;
     public Vector2 maxAreaBoundaries;
 
-    private float generationDelaySec = 0f;      // inverse frequency
+    private bool IsActive = false;
     private float lastTime = 0f;                // last time we generated a powerup
     private int powerUpCpt = 0;                 // total number of powerup generated
     public List<GameObject> powerUps;           // list of available powerups
@@ -19,15 +19,13 @@ public class PowerUpGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        generationDelaySec = 1 / generationFrequencySec;
-        lastTime = Time.time;
-        currentPowerUps = new List<GameObject>();
+        StartGenerator();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ((Time.time - lastTime) > generationDelaySec)
+        if (IsActive && (Time.time - lastTime) > generationDelaySec)
         {
             lastTime = Time.time;
             generate();
@@ -69,4 +67,19 @@ public class PowerUpGenerator : MonoBehaviour
     {
         return Random.Range(1, powerUps.Count);
     }
+
+    public void StartGenerator()
+    {
+        lastTime = Time.time;
+        currentPowerUps = new List<GameObject>();
+        IsActive = true;
+    }
+
+    public void StopGenerator()
+    {
+        IsActive = false;
+        while (currentPowerUps.Count > 0)
+            Destroy(currentPowerUps[0]);
+    }
+
 }

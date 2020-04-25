@@ -9,29 +9,58 @@ using UnityEngine.SceneManagement;
 public abstract class PowerUp : MonoBehaviour
 {
     //public abstract float probability { get; }
-    private GameObject balle;
-    
+    public float lifetimeSec = 5f;
+    public float durationSec = 5f;
+    public Vector2 Size = new Vector2(0.5f, 0.5f);
+    private Coroutine LifeCycleCoroutine;
+    private Coroutine EffectDurationCoroutine;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        LifeCycleCoroutine = StartCoroutine(LifeCycle());
+
+        // setup size
+        Vector3 spriteSize = this.gameObject.GetComponent<SpriteRenderer>().bounds.extents * 2;
+        Size = Size * TerrainMaker.unitPix;
+        this.gameObject.transform.localScale = Size / spriteSize;
 
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
-        Debug.Log("ping");
+
     }
 
-    public abstract void Effect();
+    public abstract void ApplyEffect();
+    public abstract void RevertEffect();
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("PowerUp "+ this.gameObject.name+" triggered by "+ collision.gameObject.tag);
         if(collision.gameObject.tag == "Ball")
         {
-            Effect();
-            Destroy(this.gameObject);
+            StopCoroutine(LifeCycleCoroutine);
+            EffectDurationCoroutine = StartCoroutine(EffectDuration());
+            ApplyEffect();
+            this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+            this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
+
+    private IEnumerator LifeCycle()
+    {
+        yield return new WaitForSeconds(lifetimeSec);
+        Destroy(this.gameObject);
+    }
+
+    private IEnumerator EffectDuration()
+    {
+        yield return new WaitForSeconds(durationSec);
+        RevertEffect();
+        Destroy(this.gameObject);
+    }
+
+
 }

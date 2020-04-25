@@ -33,6 +33,7 @@ public class TerrainMaker : MonoBehaviour
     public static Vector2 BarreSize;
     public static Vector2 MargeSize;
     public static Vector2 BallSize;
+    public static float unitPix;
 
 
 
@@ -173,7 +174,7 @@ public class TerrainMaker : MonoBehaviour
         }
 
         // Define the size of a Display Unit in pixels (pixels/DU) (maybe to cast as int ???)
-        float unitPix = usedScreenSize.x / (targetAreaSize.x + 2 * targetBarreSize.x + 2 * targetMargeSize.x);
+        unitPix = usedScreenSize.x / (targetAreaSize.x + 2 * targetBarreSize.x + 2 * targetMargeSize.x);
 
         Debug.Log("ScreenR=" + screenRatio + " / targetR=" + targetRatio + " / 1U=" + unitPix);
 

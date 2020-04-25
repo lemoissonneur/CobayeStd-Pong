@@ -6,20 +6,23 @@ public class VitesseBalleUp : PowerUp
 {
     public float AugmentationVitesse = 0f;
 
-    // Start is called before the first frame update
     new void Start()
     {
-        
+        base.Start();
     }
 
-    // Update is called once per frame
-    void Update()
+    new void Update()
     {
-        
+        base.Update();
     }
 
-    public override void Effect()
+    public override void ApplyEffect()
     {
-        GameManager.Instance.ball.currentSpeed += AugmentationVitesse;
+        GameManager.Instance.ball.currentSpeed *= AugmentationVitesse;
+    }
+
+    public override void RevertEffect()
+    {
+        GameManager.Instance.ball.currentSpeed /= AugmentationVitesse;
     }
 }

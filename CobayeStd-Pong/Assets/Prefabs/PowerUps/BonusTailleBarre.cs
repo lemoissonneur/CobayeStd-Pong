@@ -5,24 +5,36 @@ using UnityEngine;
 public class BonusTailleBarre : PowerUp
 {
     public float AugmentationTaille = 0f;
+    private Player target;
 
-    // Start is called before the first frame update
     new void Start()
     {
-        
+        base.Start();
     }
 
-    // Update is called once per frame
-    void Update()
+    new void Update()
     {
-        
+        base.Update();
     }
 
-    public override void Effect()
+    public override void ApplyEffect()
     {
         if (GameManager.Instance.ball.LastPlayerTouch() == "Player 1")
-            GameManager.Instance.pong.transform.localScale = new Vector3(GameManager.Instance.pong.transform.localScale.x, GameManager.Instance.pong.transform.localScale.y * AugmentationTaille, 1);
+            target = GameManager.Instance.pong;
         else if (GameManager.Instance.ball.LastPlayerTouch() == "Player 2")
-            GameManager.Instance.ping.transform.localScale = new Vector3(GameManager.Instance.ping.transform.localScale.x, GameManager.Instance.ping.transform.localScale.y * AugmentationTaille, 1);
+            target = GameManager.Instance.ping;
+
+        target.transform.localScale = new Vector3(
+                GameManager.Instance.pong.transform.localScale.x,
+                GameManager.Instance.pong.transform.localScale.y * AugmentationTaille,
+                GameManager.Instance.pong.transform.localScale.z);
+    }
+
+    public override void RevertEffect()
+    {
+        target.transform.localScale = new Vector3(
+                GameManager.Instance.pong.transform.localScale.x,
+                GameManager.Instance.pong.transform.localScale.y / AugmentationTaille,
+                GameManager.Instance.pong.transform.localScale.z);
     }
 }

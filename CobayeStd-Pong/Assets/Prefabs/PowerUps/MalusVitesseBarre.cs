@@ -5,24 +5,30 @@ using UnityEngine;
 public class MalusVitesseBarre : PowerUp
 {
     public float ReductionVitesse = 0f;
+    private Player target;
 
-    // Start is called before the first frame update
     new void Start()
     {
-        
+        base.Start();
     }
 
-    // Update is called once per frame
-    void Update()
+    new void Update()
     {
-        
+        base.Update();
     }
 
-    public override void Effect()
+    public override void ApplyEffect()
     {
         if (GameManager.Instance.ball.LastPlayerTouch() == "Player 1")
-            GameManager.Instance.ping.speed -= ReductionVitesse;
+            target = GameManager.Instance.ping;
         else if (GameManager.Instance.ball.LastPlayerTouch() == "Player 2")
-            GameManager.Instance.pong.speed -= ReductionVitesse;
+            target = GameManager.Instance.pong;
+
+            target.speed /= ReductionVitesse;
+    }
+
+    public override void RevertEffect()
+    {
+        target.speed *= ReductionVitesse;
     }
 }
