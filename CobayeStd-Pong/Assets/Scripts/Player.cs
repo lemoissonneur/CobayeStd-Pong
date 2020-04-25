@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Text scoreText = null;
 
-    public float limitePos = 4.2f;
+    public float limitePos;
 
     private Rigidbody2D rb2D;
     private BoxCollider2D bc2D;
@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
 
     public void Init(Vector2 position)
     {
-        limitePos = (TerrainMaker.TerrainSize.y / 2) - (TerrainMaker.BarreSize.y / 2);
+        processLimitePos();
 
         transform.position = initPos = position;
         score = 0;
@@ -73,6 +73,11 @@ public class Player : MonoBehaviour
         scoreText.text = score.ToString();
 
         GameManager.Instance.CheckScore(gameObject.name, score);
+    }
+
+    public void processLimitePos()
+    {
+        limitePos = (TerrainMaker.TerrainSize.y / 2) - (transform.localScale.y * TerrainMaker.BarreSize.y / 2);
     }
 
 }

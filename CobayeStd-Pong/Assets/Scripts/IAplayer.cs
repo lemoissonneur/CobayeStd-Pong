@@ -5,7 +5,6 @@ using UnityEngine;
 public class IAplayer : MonoBehaviour
 {
     public float speed = 6.5f;
-    public float limitePos = 4.2f;
     public enum IANiveau {STUPIDE, PETE};
     public IANiveau niveau;
     private GameObject balle;
@@ -17,6 +16,7 @@ public class IAplayer : MonoBehaviour
     private Rigidbody2D rb2D;
     private BoxCollider2D bc2D;
     private SpriteRenderer spriteRender;
+    private Player player;
 
     // Start is called before the first frame update
     void Start()
@@ -43,13 +43,14 @@ public class IAplayer : MonoBehaviour
     {
         bc2D = this.gameObject.GetComponent<BoxCollider2D>();
         spriteRender = this.gameObject.GetComponent<SpriteRenderer>();
+        player = this.gameObject.GetComponent<Player>();
         bc2D.size = spriteRender.bounds.extents * 2;
         balle = GameObject.Find("Baballe");
         ballePosition = balle.GetComponent<Transform>().position;
         ballePreviousPosition = ballePosition;
         offset = (this.transform.localScale.y * this.GetComponent<BoxCollider2D>().size.y / 2) - 10f;
 
-        limitePos = (TerrainMaker.TerrainSize.y / 2) - (TerrainMaker.BarreSize.y / 2);
+        player.processLimitePos();
     }
 
     private void IApeteUpdate()
@@ -65,11 +66,11 @@ public class IAplayer : MonoBehaviour
             ballePosition.y -= offset;
         else ballePosition.y += offset;
 
-        if (ballePosition.y > transform.position.y && transform.position.y < limitePos)
+        if (ballePosition.y > transform.position.y && transform.position.y < player.limitePos)
         {
             transform.Translate(Vector2.up * speed * Time.deltaTime);
         }
-        if (ballePosition.y < transform.position.y && transform.position.y > -limitePos)
+        if (ballePosition.y < transform.position.y && transform.position.y > -player.limitePos)
         {
             transform.Translate(Vector2.down * speed * Time.deltaTime);
         }
@@ -79,11 +80,11 @@ public class IAplayer : MonoBehaviour
     {
         ballePosition = balle.GetComponent<Transform>().position;
 
-        if (ballePosition.y > transform.position.y && transform.position.y < limitePos)
+        if (ballePosition.y > transform.position.y && transform.position.y < player.limitePos)
         {
             transform.Translate(Vector2.up * speed * Time.deltaTime);
         }
-        if (ballePosition.y < transform.position.y && transform.position.y > -limitePos)
+        if (ballePosition.y < transform.position.y && transform.position.y > -player.limitePos)
         {
             transform.Translate(Vector2.down * speed * Time.deltaTime);
         }

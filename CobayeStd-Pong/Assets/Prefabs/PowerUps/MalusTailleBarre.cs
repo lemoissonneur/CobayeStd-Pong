@@ -28,6 +28,7 @@ public class MalusTailleBarre : PowerUp
                 GameManager.Instance.pong.transform.localScale.x,
                 GameManager.Instance.pong.transform.localScale.y / ReductionTaille,
                 GameManager.Instance.pong.transform.localScale.z);
+        target.processLimitePos();
     }
 
     public override void RevertEffect()
@@ -36,5 +37,6 @@ public class MalusTailleBarre : PowerUp
                 GameManager.Instance.pong.transform.localScale.x,
                 GameManager.Instance.pong.transform.localScale.y * ReductionTaille,
                 GameManager.Instance.pong.transform.localScale.z);
+        target.processLimitePos();
     }
 }
