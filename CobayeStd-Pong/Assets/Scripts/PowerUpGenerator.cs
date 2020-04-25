@@ -79,10 +79,12 @@ public class PowerUpGenerator : MonoBehaviour
     public void StopGenerator()
     {
         IsActive = false;
-        Debug.Log(currentPowerUps);
         while (currentPowerUps.Count > 0)
         {
             GameObject trash = currentPowerUps[0];
+            PowerUp trashPowerUp = trash.GetComponent<PowerUp>();
+            if (trashPowerUp.triggered)
+                trashPowerUp.RevertEffect();
             currentPowerUps.RemoveAt(0);
             Destroy(trash);
         }

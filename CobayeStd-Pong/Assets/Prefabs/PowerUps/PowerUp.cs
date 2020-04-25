@@ -12,6 +12,7 @@ public abstract class PowerUp : MonoBehaviour
     public float lifetimeSec = 5f;
     public float durationSec = 5f;
     public Vector2 Size = new Vector2(0.5f, 0.5f);
+    public bool triggered = false;
     private Coroutine LifeCycleCoroutine;
     private Coroutine EffectDurationCoroutine;
 
@@ -41,9 +42,14 @@ public abstract class PowerUp : MonoBehaviour
         Debug.Log("PowerUp "+ this.gameObject.name+" triggered by "+ collision.gameObject.tag);
         if(collision.gameObject.tag == "Ball")
         {
+            // switch coroutine
             StopCoroutine(LifeCycleCoroutine);
             EffectDurationCoroutine = StartCoroutine(EffectDuration());
+
+            // apply effect
             ApplyEffect();
+
+            // remove physics
             this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
             this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         }
