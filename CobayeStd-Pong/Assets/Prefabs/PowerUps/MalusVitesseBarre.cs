@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MalusVitesseBarre : PowerUp
 {
-    public float ReductionVitesse = 0f;
+    public float VitesseDiviseur = 0f;
     private Player target;
 
     new void Start()
@@ -24,11 +24,11 @@ public class MalusVitesseBarre : PowerUp
         else if (GameManager.Instance.ball.LastPlayerTouch() == "Player 2")
             target = GameManager.Instance.pong;
 
-            target.Speed /= ReductionVitesse;
+            target.Speed /= VitesseDiviseur;
     }
 
     public override void RevertEffect()
     {
-        target.Speed *= ReductionVitesse;
+        target.Speed *= VitesseDiviseur;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MalusTailleBarre : PowerUp
 {
-    public float ReductionTaille = 0f;
+    public float TailleDiviseur = 0f;
     private Player target;
 
     new void Start()
@@ -26,7 +26,7 @@ public class MalusTailleBarre : PowerUp
 
         target.transform.localScale = new Vector3(
                 GameManager.Instance.pong.transform.localScale.x,
-                GameManager.Instance.pong.transform.localScale.y / ReductionTaille,
+                GameManager.Instance.pong.transform.localScale.y / TailleDiviseur,
                 GameManager.Instance.pong.transform.localScale.z);
         target.processLimitePos();
     }
@@ -35,7 +35,7 @@ public class MalusTailleBarre : PowerUp
     {
         target.transform.localScale = new Vector3(
                 GameManager.Instance.pong.transform.localScale.x,
-                GameManager.Instance.pong.transform.localScale.y * ReductionTaille,
+                GameManager.Instance.pong.transform.localScale.y * TailleDiviseur,
                 GameManager.Instance.pong.transform.localScale.z);
         target.processLimitePos();
     }

@@ -12,7 +12,12 @@ public abstract class PowerUp : MonoBehaviour
     public float lifetimeSec = 5f;
     public float durationSec = 5f;
     public Vector2 SizeDU = new Vector2(0.5f, 0.5f);
-    public bool triggered = false;
+
+    private bool triggered = false;
+    public bool Triggered
+    {
+        get => triggered;
+    }
     private Coroutine LifeCycleCoroutine;
     private Coroutine EffectDurationCoroutine;
 
@@ -40,6 +45,8 @@ public abstract class PowerUp : MonoBehaviour
     {
         if(collision.gameObject.tag == "Ball")
         {
+            triggered = true;
+
             // switch coroutine
             StopCoroutine(LifeCycleCoroutine);
             EffectDurationCoroutine = StartCoroutine(EffectDuration());

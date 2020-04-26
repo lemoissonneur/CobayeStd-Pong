@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VitesseBalleUp : PowerUp
 {
-    public float AugmentationVitesse = 0f;
+    public float VitesseMultiplicateur = 0f;
 
     new void Start()
     {
@@ -18,11 +18,11 @@ public class VitesseBalleUp : PowerUp
 
     public override void ApplyEffect()
     {
-        GameManager.Instance.ball.currentSpeed *= AugmentationVitesse;
+        GameManager.Instance.ball.currentSpeed *= VitesseMultiplicateur;
     }
 
     public override void RevertEffect()
     {
-        GameManager.Instance.ball.currentSpeed /= AugmentationVitesse;
+        GameManager.Instance.ball.currentSpeed /= VitesseMultiplicateur;
     }
 }

@@ -87,7 +87,7 @@ public class PowerUpGenerator : MonoBehaviour
             PowerUp trashPowerUp = trash.GetComponent<PowerUp>();
 
             // if triggered, reverse it's effect
-            if (trashPowerUp.triggered)
+            if (trashPowerUp.Triggered)
                 trashPowerUp.RevertEffect();
 
             // kill it

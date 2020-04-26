@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BonusVitesseBarre : PowerUp
 {
-    public float AugmentationVitesse = 0f;
+    public float VitesseMultiplicateur = 0f;
     private Player target;
 
     new void Start()
@@ -24,11 +24,11 @@ public class BonusVitesseBarre : PowerUp
         else if (GameManager.Instance.ball.LastPlayerTouch() == "Player 2")
             target = GameManager.Instance.ping;
 
-        target.Speed *= AugmentationVitesse;
+        target.Speed *= VitesseMultiplicateur;
     }
 
     public override void RevertEffect()
     {
-        target.Speed /= AugmentationVitesse;
+        target.Speed /= VitesseMultiplicateur;
     }
 }

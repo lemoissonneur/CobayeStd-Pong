@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifetimeSec: 5
   durationSec: 5
-  AugmentationTaille: 2
+  SizeDU: {x: 0.5, y: 0.5}
+  triggered: 0
+  TailleMultiplicateur: 2
 --- !u!1001 &7574303004214158028
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VitesseBalleDown : PowerUp
 {
-    public float ReductionVitesse = 0f;
+    public float VitesseDiviseur = 0f;
 
     new void Start()
     {
@@ -18,11 +18,11 @@ public class VitesseBalleDown : PowerUp
 
     public override void ApplyEffect()
     {
-        GameManager.Instance.ball.currentSpeed /= ReductionVitesse;
+        GameManager.Instance.ball.currentSpeed /= VitesseDiviseur;
     }
 
     public override void RevertEffect()
     {
-        GameManager.Instance.ball.currentSpeed *= ReductionVitesse;
+        GameManager.Instance.ball.currentSpeed *= VitesseDiviseur;
     }
 }
