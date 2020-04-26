@@ -19,7 +19,7 @@ public class TerrainMaker : MonoBehaviour
     [SerializeField]
     private Vector2 targetBarreSizeDU = new Vector2(1, 5);
     [SerializeField]
-    private Vector2 targetMargeSizeDU = new Vector2(5, 0);
+    private Vector2 targetMargeSizeDU = new Vector2(4, 0);
     [SerializeField]
     private Vector2 targetBalleSizeDU = new Vector2(1, 1);
 
@@ -96,7 +96,7 @@ public class TerrainMaker : MonoBehaviour
         pong.transform.localScale = TargetBarreSizePix / spriteSize;
 
         // Position Ping and Pong
-        PingPosition = ping.transform.position = new Vector2(-TargetAreaSizePix.x/2 + TargetBarreSizePix.x/2, 0);
+        PingPosition = ping.transform.position = new Vector2(-TargetAreaSizePix.x/2 - TargetBarreSizePix.x/2, 0);
         PongPosition = pong.transform.position = new Vector2(TargetAreaSizePix.x/2 + TargetBarreSizePix.x / 2, 0);
 
         // Scale ball
