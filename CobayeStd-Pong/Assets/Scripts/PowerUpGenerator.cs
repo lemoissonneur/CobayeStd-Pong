@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PowerUpGenerator : MonoBehaviour
 {
     // generator setup
@@ -29,19 +30,19 @@ public class PowerUpGenerator : MonoBehaviour
         if (IsActive && (Time.time - lastTime) > generationDelaySec)
         {
             lastTime = Time.time;
-            generate();
+            Generate();
         }
     }
 
-    public GameObject generate()
+    public GameObject Generate()
     {
         GameObject newPowerUp;
 
         // generate random position
-        Vector3 powerUpPosition = generateRandomPosition();
+        Vector3 powerUpPosition = GenerateRandomPosition();
 
         // roll a dice to select the power in the list
-        int selectedpower = generatePowerUpNumber();
+        int selectedpower = GeneratePowerUpNumber();
 
         //Debug.Log("PowerUpGenerator.generate() "+ selectedpower + "@ "+powerUpPosition);
 
@@ -52,7 +53,7 @@ public class PowerUpGenerator : MonoBehaviour
         return newPowerUp;
     }
 
-    public Vector3 generateRandomPosition()
+    public Vector3 GenerateRandomPosition()
     {
         Vector3 position = Vector3.zero;
         position.x = Random.Range(minAreaBoundaries.x, maxAreaBoundaries.x);
@@ -60,9 +61,9 @@ public class PowerUpGenerator : MonoBehaviour
         return position;
     }
 
-    public int generatePowerUpNumber()
+    public int GeneratePowerUpNumber()
     {
-        return Random.Range(1, powerUps.Count);
+        return Random.Range(0, powerUps.Count-1);
     }
 
     public void StartGenerator()
@@ -102,3 +103,4 @@ public class PowerUpGenerator : MonoBehaviour
     }
 
 }
+
