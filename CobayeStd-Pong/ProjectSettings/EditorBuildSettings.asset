@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Jeux.unity
     guid: 49ca03c4914a5214993ea671c8deb5cd
+  - enabled: 1
+    path: Assets/Scenes/ScenesTestPlayMode/PowerUpGeneratorTestScene.unity
+    guid: 6611b8535d2161a41878d94cbab67af4
   m_configObjects: {}

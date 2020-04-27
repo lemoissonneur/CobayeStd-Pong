@@ -7,14 +7,14 @@ public class PowerUpGenerator : MonoBehaviour
 {
     // generator setup
     public float generationDelaySec = 5f;
-    public Vector2Int minAreaBoundariesDU;
-    public Vector2Int maxAreaBoundariesDU;
+    public Vector2 minAreaBoundaries;
+    public Vector2 maxAreaBoundaries;
+    public Vector2 powerUpSizePix;
     public List<GameObject> powerUps;   // list of available powerups
 
     private bool IsActive = false;
     private float lastTime = 0f;        // last time we generated a powerup
-    private Vector2 minAreaBoundaries;
-    private Vector2 maxAreaBoundaries;
+
 
 
 
@@ -49,6 +49,7 @@ public class PowerUpGenerator : MonoBehaviour
         // generate power up from prefab (TODO)
         newPowerUp = Instantiate(powerUps[selectedpower], this.transform);
         newPowerUp.transform.position = powerUpPosition;
+        newPowerUp.GetComponent<PowerUp>().SetSizePix(powerUpSizePix);
 
         return newPowerUp;
     }
@@ -63,13 +64,12 @@ public class PowerUpGenerator : MonoBehaviour
 
     public int GeneratePowerUpNumber()
     {
-        return Random.Range(0, powerUps.Count-1);
+        return Random.Range(0, powerUps.Count);
     }
 
     public void StartGenerator()
     {
         KillAllChildrens();
-        TranslateAreaBoundaries();
         lastTime = Time.time;
         IsActive = true;
     }
@@ -95,12 +95,5 @@ public class PowerUpGenerator : MonoBehaviour
             Destroy(trash);
         }
     }
-
-    private void TranslateAreaBoundaries()
-    {
-        minAreaBoundaries = minAreaBoundariesDU * TerrainMaker.PixelsPerDU;
-        maxAreaBoundaries = maxAreaBoundariesDU * TerrainMaker.PixelsPerDU;
-    }
-
 }
 

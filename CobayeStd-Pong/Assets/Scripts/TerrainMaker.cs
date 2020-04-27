@@ -12,6 +12,8 @@ public class TerrainMaker : MonoBehaviour
     private GameObject ping = null;
     [SerializeField]
     private GameObject pong = null;
+    [SerializeField]
+    private PowerUpGenerator powerUpGenerator = null;
 
     // toutes les valeurs en DU 'Display Unit'
     [SerializeField]
@@ -22,6 +24,8 @@ public class TerrainMaker : MonoBehaviour
     private Vector2 targetMargeSizeDU = new Vector2(4, 0);
     [SerializeField]
     private Vector2 targetBalleSizeDU = new Vector2(1, 1);
+    [SerializeField]
+    private Vector2 targetPowerUpSizeDU = new Vector2(0.5f, 0.5f);
 
 
     public static Vector2 PingPosition;
@@ -32,7 +36,8 @@ public class TerrainMaker : MonoBehaviour
     public static Vector2 TargetBarreSizePix;    // barre wanted size in pixels
     public static Vector2 TargetMargeSizePix;    // marge wanted size in pixels
     public static Vector2 TargetBallSizePix;     // balle wanted size in pixels
-    public static int PixelsPerDU;                  // pixels per Display Units
+    public static Vector2 TargetPowerUpSizePix;  // powerUp wanted size in pixels
+    public static int PixelsPerDU;               // pixels per Display Units
 
 
 
@@ -102,6 +107,11 @@ public class TerrainMaker : MonoBehaviour
         // Scale ball
         spriteSize = ball.GetComponent<SpriteRenderer>().bounds.extents * 2;
         ball.transform.localScale = TargetBallSizePix / spriteSize;
+
+        // Scale PowerUp Spawn Area
+        powerUpGenerator.minAreaBoundaries = new Vector2(-TargetAreaSizePix.x/2, -TargetAreaSizePix.y/2);
+        powerUpGenerator.maxAreaBoundaries = new Vector2(TargetAreaSizePix.x/2, TargetAreaSizePix.y/2);
+        powerUpGenerator.powerUpSizePix = TargetPowerUpSizePix;
 
 
     }
@@ -174,17 +184,16 @@ public class TerrainMaker : MonoBehaviour
         Debug.Log("ScreenR=" + screenRatio + " / targetR=" + targetRatio + " / 1DU=" + PixelsPerDU);
 
 
-        // Define the AREA SIZE
+        // translate sizes
         TargetAreaSizePix = targetAreaSizeDU * PixelsPerDU;
 
-        // Define the BARRE SIZE
         TargetBarreSizePix = targetBarreSizeDU * PixelsPerDU;
 
-        // Define the MARGE SIZE
         TargetMargeSizePix = targetMargeSizeDU * PixelsPerDU;
 
-        // Define the BALL SIZE
         TargetBallSizePix = targetBalleSizeDU * PixelsPerDU;
+
+        TargetPowerUpSizePix = targetPowerUpSizeDU * PixelsPerDU;
     }
 
 }

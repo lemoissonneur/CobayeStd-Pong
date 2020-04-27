@@ -11,7 +11,7 @@ public abstract class PowerUp : MonoBehaviour
     //public abstract float probability { get; }
     public float lifetimeSec = 5f;
     public float durationSec = 5f;
-    public Vector2 SizeDU = new Vector2(0.5f, 0.5f);
+    public Vector2 SizePix = new Vector2(0.5f, 0.5f);
 
     private bool triggered = false;
     public bool Triggered
@@ -25,11 +25,6 @@ public abstract class PowerUp : MonoBehaviour
     protected virtual void Start()
     {
         LifeCycleCoroutine = StartCoroutine(LifeCycle());
-
-        // setup size
-        Vector3 spriteSize = this.gameObject.GetComponent<SpriteRenderer>().bounds.extents * 2;
-        SizeDU *= TerrainMaker.PixelsPerDU;
-        this.gameObject.transform.localScale = SizeDU / spriteSize;
     }
 
     // Update is called once per frame
@@ -74,5 +69,10 @@ public abstract class PowerUp : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    public void SetSizePix(Vector2 newSizePix)
+    {
+        Vector3 spriteSize = this.gameObject.GetComponent<SpriteRenderer>().bounds.extents * 2;
+        this.gameObject.transform.localScale = newSizePix / spriteSize;
+    }
 
 }
