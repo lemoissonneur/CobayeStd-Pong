@@ -224,8 +224,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generationDelaySec: 5
-  minAreaBoundaries: {x: -10, y: -5}
-  maxAreaBoundaries: {x: 10, y: 5}
+  minAreaBoundaries: {x: -100, y: -100}
+  maxAreaBoundaries: {x: 100, y: 100}
+  powerUpSizePix: {x: 10, y: 10}
   powerUps:
   - {fileID: 3252912477576554529, guid: 5f141ab4c7bd31f419a3cdd535d7b2fd, type: 3}
   - {fileID: 7150403771525958359, guid: e39e38bc89d059d46a0ca5f682a50fbb, type: 3}
