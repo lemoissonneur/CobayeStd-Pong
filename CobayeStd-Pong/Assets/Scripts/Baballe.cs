@@ -8,12 +8,10 @@ public class Baballe : MonoBehaviour
     public float initialSpeed = 700f;
     public int start_delay_sec = 2;
     public float reboundAcceleration = 70f;
-    public float limitSpeed = 2000f;
+    public float finalSpeed = 2000f;
     public float currentSpeed;
 
     AudioSource audioSource;
-    public AudioClip pingClip;
-    public AudioClip pongClip;
     public AudioClip wallClip;
 
     private bool started = false;
@@ -51,37 +49,21 @@ public class Baballe : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         //Debug.Log(other.gameObject.name);
-        switch (other.gameObject.name)
+
+        audioSource.PlayOneShot(wallClip, 1f);
+
+        if (other.gameObject.name == "Ping" || other.gameObject.name == "Pong")
         {
-            case "Ping":
-                {
-                    audioSource.PlayOneShot(pingClip, 1f);
+            float y = HitFactor(transform.position, other.transform.position, other.collider.bounds.size.y);
+            float x = (this.transform.position.x > 0) ? 1 : -1;
 
-                    float y = HitFactor(transform.position, other.transform.position, other.collider.bounds.size.y);
-                    Vector2 dir = new Vector2(1, y).normalized;
-                    currentSpeed = currentSpeed < limitSpeed ? (currentSpeed+reboundAcceleration>limitSpeed ? limitSpeed : currentSpeed + reboundAcceleration) : currentSpeed;
-                    rb2D.velocity = dir * currentSpeed;
+            Vector2 dir = new Vector2(x, y).normalized;
 
-                    lastPlayer = other.gameObject.tag;
-                }
-                break;
+            currentSpeed = currentSpeed < finalSpeed ? (currentSpeed+reboundAcceleration> finalSpeed ? finalSpeed : currentSpeed + reboundAcceleration) : currentSpeed;
 
-            case "Pong":
-                {
-                    audioSource.PlayOneShot(pongClip, 1f);
+            rb2D.velocity = dir * currentSpeed;
 
-                    float y = HitFactor(transform.position, other.transform.position, other.collider.bounds.size.y);
-                    Vector2 dir = new Vector2(-1, y).normalized;
-                    currentSpeed = currentSpeed < limitSpeed ? (currentSpeed + reboundAcceleration > limitSpeed ? limitSpeed : currentSpeed + reboundAcceleration) : currentSpeed;
-                    rb2D.velocity = dir * currentSpeed;
-
-                    lastPlayer = other.gameObject.tag;
-                }
-                break;
-
-            default:
-                audioSource.PlayOneShot(wallClip, 1f);
-                break;
+            lastPlayer = other.gameObject.tag;
         }
     }
 
