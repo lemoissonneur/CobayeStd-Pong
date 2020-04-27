@@ -25,18 +25,18 @@ public class BonusTailleBarre : PowerUp
             target = GameManager.Instance.ping;
 
         target.transform.localScale = new Vector3(
-                GameManager.Instance.pong.transform.localScale.x,
-                GameManager.Instance.pong.transform.localScale.y * TailleMultiplicateur,
-                GameManager.Instance.pong.transform.localScale.z);
+                target.transform.localScale.x,
+                target.transform.localScale.y * TailleMultiplicateur,
+                target.transform.localScale.z);
         target.processLimitePos();
     }
 
     public override void RevertEffect()
     {
         target.transform.localScale = new Vector3(
-                GameManager.Instance.pong.transform.localScale.x,
-                GameManager.Instance.pong.transform.localScale.y / TailleMultiplicateur,
-                GameManager.Instance.pong.transform.localScale.z);
+                target.transform.localScale.x,
+                target.transform.localScale.y / TailleMultiplicateur,
+                target.transform.localScale.z);
         target.processLimitePos();
     }
 }

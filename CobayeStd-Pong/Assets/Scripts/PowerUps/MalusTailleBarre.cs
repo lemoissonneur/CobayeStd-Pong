@@ -25,18 +25,18 @@ public class MalusTailleBarre : PowerUp
             target = GameManager.Instance.pong;
 
         target.transform.localScale = new Vector3(
-                GameManager.Instance.pong.transform.localScale.x,
-                GameManager.Instance.pong.transform.localScale.y / TailleDiviseur,
-                GameManager.Instance.pong.transform.localScale.z);
+                target.transform.localScale.x,
+                target.transform.localScale.y / TailleDiviseur,
+                target.transform.localScale.z);
         target.processLimitePos();
     }
 
     public override void RevertEffect()
     {
         target.transform.localScale = new Vector3(
-                GameManager.Instance.pong.transform.localScale.x,
-                GameManager.Instance.pong.transform.localScale.y * TailleDiviseur,
-                GameManager.Instance.pong.transform.localScale.z);
+                target.transform.localScale.x,
+                target.transform.localScale.y * TailleDiviseur,
+                target.transform.localScale.z);
         target.processLimitePos();
     }
 }
