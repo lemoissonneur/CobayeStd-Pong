@@ -544,7 +544,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &334761477
 MonoBehaviour:
@@ -561,10 +561,8 @@ MonoBehaviour:
   initialSpeed: 700
   start_delay_sec: 1
   reboundAcceleration: 70
-  limitSpeed: 2000
+  finalSpeed: 2000
   currentSpeed: 0
-  pingClip: {fileID: 8300000, guid: 9ae6e5edd44d9924c94825b57dedcc93, type: 3}
-  pongClip: {fileID: 8300000, guid: 2b557b9b550b7d941b9832af59955ef0, type: 3}
   wallClip: {fileID: 8300000, guid: c4b274935bdb865468006f01dd078977, type: 3}
 --- !u!82 &334761478
 AudioSource:
@@ -792,7 +790,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 540
+  orthographic size: 384
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
