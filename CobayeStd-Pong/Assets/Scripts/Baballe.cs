@@ -48,16 +48,17 @@ public class Baballe : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        //Debug.Log(other.gameObject.name);
+        Debug.Log(other.gameObject.name);
 
         audioSource.PlayOneShot(wallClip, 1f);
 
         if (other.gameObject.name == "Ping" || other.gameObject.name == "Pong")
         {
             float y = HitFactor(transform.position, other.transform.position, other.collider.bounds.size.y);
-            float x = (this.transform.position.x > 0) ? 1 : -1;
+            float x = (this.transform.position.x > 0) ? -1 : 1;
 
             Vector2 dir = new Vector2(x, y).normalized;
+            //Debug.Log(other.gameObject.name+dir.ToString());
 
             currentSpeed = currentSpeed < finalSpeed ? (currentSpeed+reboundAcceleration> finalSpeed ? finalSpeed : currentSpeed + reboundAcceleration) : currentSpeed;
 
