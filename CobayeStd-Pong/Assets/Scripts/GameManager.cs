@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        
+        CheckBallPosition();
     }
 
 
@@ -81,9 +81,12 @@ public class GameManager : MonoBehaviour
     /**************************************************************************
     *                                 PRIVATE
     /**************************************************************************/
-    private void MakeTerrain()
+    private void CheckBallPosition()
     {
-
+        if (Vector2.SqrMagnitude(ball.transform.position) > Vector2.SqrMagnitude(TerrainMaker.UsedScreenSizePix) * 2)
+        {
+            ball.transform.position = Vector2.zero;
+        }
     }
 
 

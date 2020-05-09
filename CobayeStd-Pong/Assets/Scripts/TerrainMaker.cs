@@ -80,12 +80,12 @@ public class TerrainMaker : MonoBehaviour
         bottom.transform.position = new Vector2(0, -halfUsedScreenSize.y - 5f);
         bottom.transform.parent = terrain.transform;
         
-        GameObject leftDetector = CreateGoalDetector("LeftDetector", new Vector2(10, UsedScreenSizePix.y));
-        leftDetector.transform.position = new Vector2(-halfUsedScreenSize.x - 5f, 0);
+        GameObject leftDetector = CreateGoalDetector("LeftDetector", new Vector2(100, UsedScreenSizePix.y));
+        leftDetector.transform.position = new Vector2(-halfUsedScreenSize.x - 50f, 0);
         leftDetector.transform.parent = terrain.transform;
 
-        GameObject rightDetector = CreateGoalDetector("RightDetector", new Vector2(10, UsedScreenSizePix.y));
-        rightDetector.transform.position = new Vector2(halfUsedScreenSize.x + 5f, 0);
+        GameObject rightDetector = CreateGoalDetector("RightDetector", new Vector2(100, UsedScreenSizePix.y));
+        rightDetector.transform.position = new Vector2(halfUsedScreenSize.x + 50f, 0);
         rightDetector.transform.parent = terrain.transform;
 
         Vector3 spriteSize;
@@ -102,7 +102,7 @@ public class TerrainMaker : MonoBehaviour
 
         // Position Ping and Pong
         PingPosition = ping.transform.position = new Vector2(-TargetAreaSizePix.x/2 - TargetBarreSizePix.x/2, 0);
-        PongPosition = pong.transform.position = new Vector2(TargetAreaSizePix.x/2 + TargetBarreSizePix.x / 2, 0);
+        PongPosition = pong.transform.position = new Vector2(TargetAreaSizePix.x/2 + TargetBarreSizePix.x/2, 0);
 
         // Scale ball
         spriteSize = ball.GetComponent<SpriteRenderer>().bounds.extents * 2;
